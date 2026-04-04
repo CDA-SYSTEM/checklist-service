@@ -1,0 +1,10 @@
+asgiref==3.11.1
+Django==6.0.3
+django-environ==0.13.0
+djangorestframework==3.17.1
+dnspython==2.8.0
+mongoengine==0.29.3
+PyJWT==2.12.1
+pymongo==4.16.0
+sqlparse==0.5.5
+tzdata==2025.3
