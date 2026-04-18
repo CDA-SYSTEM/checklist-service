@@ -1,0 +1,2030 @@
+{
+  "code": "LIVIANOS_PESADOS",
+  "name": "Plantilla Livianos y Pesados",
+  "version": 1,
+  "active": true,
+  "supported_vehicle_types": [
+    "LIVIANO",
+    "PESADO"
+  ],
+  "source_file": "2026-01-06 Livianos y pesados.xlsx",
+  "sections": [
+    {
+      "code": "6.1",
+      "title": "REVISION EXTERIOR",
+      "order": 1,
+      "subsections": [
+        {
+          "code": "6.1.1",
+          "title": "Carrocería y Chasis",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.1.1.1",
+              "description": "Presencia de aristas vivas o bordes cortantes exteriores en el vehiculo",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 11
+            },
+            {
+              "code": "6.1.1.2",
+              "description": "Cierre inadecuado de puertas o capó.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 12
+            },
+            {
+              "code": "6.1.1.3",
+              "description": "Cierre Inadecuado del baúl.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 3,
+              "source_row": 13
+            },
+            {
+              "code": "6.1.1.4",
+              "description": "Partes exteriores de la carrocería o cabina en mal estado (flojas, sueltas) que presenten peligro para los demas ususarios en la via.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 4,
+              "source_row": 14
+            },
+            {
+              "code": "6.1.1.5",
+              "description": "Mal estado de los elementos de sujeción de la carrocería al chasis",
+              "defect_type": "A",
+              "observation": "",
+              "order": 5,
+              "source_row": 15
+            },
+            {
+              "code": "6.1.1.6",
+              "description": "Roce o interferencia entre las llantas y el guardabarros, carrocería o suspensión.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 6,
+              "source_row": 16
+            },
+            {
+              "code": "6.1.1.7",
+              "description": "Corrosión o mal estado de la carroceria",
+              "defect_type": "B",
+              "observation": "",
+              "order": 7,
+              "source_row": 17
+            },
+            {
+              "code": "6.1.1.8",
+              "description": "Perforaciones que permitan la entrada de agua o gases en el habitaculo de pasajeros",
+              "defect_type": "A",
+              "observation": "",
+              "order": 8,
+              "source_row": 18
+            },
+            {
+              "code": "6.1.1.9",
+              "description": "Mal estado o problemas en el funcionamiento de los dispositivos de sujeción de las cabinas basculantes.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 9,
+              "source_row": 19
+            },
+            {
+              "code": "6.1.1.10",
+              "description": "La inexistencia de los sistemas mecanicos, neumaticos y electricos de acoplamiento. (Es aplicable a vehiculos diseñados para llevar remolques o semi-remolques)",
+              "defect_type": "A",
+              "observation": "",
+              "order": 10,
+              "source_row": 20
+            },
+            {
+              "code": "6.1.1.11",
+              "description": "Presencia de fisuras, cortes, dobleces o corrosión de los largueros y travesaños del chasis y carrocería.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 11,
+              "source_row": 21
+            },
+            {
+              "code": "6.1.1.12",
+              "description": "Inexistencia o riesgo de desprendimiento de defensas o parachoques.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 12,
+              "source_row": 22
+            },
+            {
+              "code": "6.1.1.13",
+              "description": "Mal estado de parachoques y/o defensas",
+              "defect_type": "B",
+              "observation": "",
+              "order": 13,
+              "source_row": 23
+            },
+            {
+              "code": "6.1.1.14",
+              "description": "El cumplimiento de algunos de los requisitos establecidos en el anexo B, sobre placas en vehiculos de servicio publico",
+              "defect_type": "A",
+              "observation": "",
+              "order": 14,
+              "source_row": 24
+            },
+            {
+              "code": "6.1.1.14",
+              "description": "la inexistencia de la placa impresa en los vehiculos de servicio publico en los costados o en el techo del vehiculo.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 15,
+              "source_row": 233
+            },
+            {
+              "code": "6.1.1.15",
+              "description": "La ubicación de la placa en la parte externa lateral en lugar diferente a la parte media de cada costado en el caso de los vehiculos clase bus, buseta y microbus.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 16,
+              "source_row": 234
+            },
+            {
+              "code": "6.1.1.16",
+              "description": "La ubicación de la placa en la parte externa lateral en lugar diferente a la parte media de las puertas traseras en el caso de los vehiculos automovil y camioneta.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 17,
+              "source_row": 235
+            },
+            {
+              "code": "6.1.1.17",
+              "description": "La ubicación de la placa en la parte externa lateral en un lugar diferente a la parte media de las puertas delanteras en el caso de los vehiculos tipo campero.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 18,
+              "source_row": 236
+            },
+            {
+              "code": "6.1.1.18",
+              "description": "La ubicación de la placa en la parte externa lateral en un lugar diferente a la parte media de las puertas de la cabina en el caso de los vehiculos de transporte de carga.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 19,
+              "source_row": 237
+            },
+            {
+              "code": "6.1.1.19",
+              "description": "La ubicación de la placa en el techo en lugar diferente al eje longitudinal del vehiculo cualquiera sea la clase de vehiculo ( debe estar colocada en cualquier punto a lo largo del eje longitudinal en forma perpendicular y centrada transversalmente).",
+              "defect_type": "A",
+              "observation": "",
+              "order": 20,
+              "source_row": 238
+            },
+            {
+              "code": "6.1.1.20",
+              "description": "La ubicación de la placa en la parte externalateral en lugar diferente a la parte media del segundo cuerpo de cada costado del vehiculo en los vehiculos de servicio publico de transporte masivo, tipo articulado y biarticulado.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 21,
+              "source_row": 239
+            }
+          ]
+        },
+        {
+          "code": "6.1.2",
+          "title": "Limpiaparabrisas",
+          "order": 2,
+          "items": [
+            {
+              "code": "6.1.2.1",
+              "description": "Inexistencia o mal funcionamiento de los limpiaparabrisas delanteros.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 26
+            }
+          ]
+        },
+        {
+          "code": "6.1.3",
+          "title": "Peldaños Es aplicable para vehiculos de transporte colectivo y masivo de pasajeros",
+          "order": 3,
+          "items": [
+            {
+              "code": "6.1.3.1",
+              "description": "La inexistencia o deterioro de peldaños o estribos para acceso y salida del vehículo.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 29
+            }
+          ]
+        },
+        {
+          "code": "6.1.4",
+          "title": "Retrovisores",
+          "order": 4,
+          "items": [
+            {
+              "code": "6.1.4.1",
+              "description": "La inexistencia de al menos dos espejos retrovisores funcionales e independientes, o camaras que cumplan esta funcion.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 31
+            },
+            {
+              "code": "6.1.4.2",
+              "description": "Estado de las superficies o fijacion deficiente de cualquier espejo retrovisor que impida o limite la funcionalidad del mismo",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 32
+            }
+          ]
+        },
+        {
+          "code": "6.1.5",
+          "title": "Soporte exterior de rueda de repuesto",
+          "order": 5,
+          "items": [
+            {
+              "code": "6.1.5.1",
+              "description": "Soprte de fijacion roto o alguno de sus anclajes",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 34
+            },
+            {
+              "code": "6.1.5.2",
+              "description": "Holgura con riesgo de desprendimiento de la rueda de repuesto",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 35
+            }
+          ]
+        },
+        {
+          "code": "6.1.6",
+          "title": "Vidrios",
+          "order": 6,
+          "items": [
+            {
+              "code": "6.1.6.1",
+              "description": "Vidrio(s) parabrisas que distorsionan y/o deforman el campo de visión mínima del conductor",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 37
+            },
+            {
+              "code": "6.1.6.2",
+              "description": "Inexistencia de alguno de los parabrisas o de los vidrios móviles.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 38
+            },
+            {
+              "code": "6.1.6.3",
+              "description": "Inexistencia de algún vidrio fijo diferente a los parabrisas.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 39
+            },
+            {
+              "code": "6.1.6.4",
+              "description": "La existencia de fisuras, impactos o láminas adheridas, publicidad o adhesivos al (a los) parabrisa(s) delantero(s), que dificulten el campo de visión del conductor.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 4,
+              "source_row": 40
+            },
+            {
+              "code": "6.1.6.5",
+              "description": "La inexistencia o mal funcionamiento de los mecanismos de accionamiento de alguno de los vidrios para vehículos de transporte público o especial de pasajeros",
+              "defect_type": "A",
+              "observation": "",
+              "order": 5,
+              "source_row": 41
+            },
+            {
+              "code": "6.1.6.6",
+              "description": "La inexistencia o mal funcionamiento de los mecanismos de accionamiento de alguno de los vidrios (por) para vehículos particulares",
+              "defect_type": "B",
+              "observation": "",
+              "order": 6,
+              "source_row": 42
+            },
+            {
+              "code": "6.1.6.7",
+              "description": "Vidrios que no sean transparentes en los vehículos de transporte publico de pasajeros de circulacion urbana",
+              "defect_type": "A",
+              "observation": "",
+              "order": 7,
+              "source_row": 43
+            }
+          ]
+        },
+        {
+          "code": "6.1.7",
+          "title": "Dispositivos de retención de la carga.",
+          "order": 7,
+          "items": [
+            {
+              "code": "6.1.7.1",
+              "description": "Mal estado de los anclajes y demás elementos para sujetar los contenedores cuando sea aplicable.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 45
+            },
+            {
+              "code": "6.1.7.2",
+              "description": "La inexistencia o mal funcionamiento de puertas o compuertas de carga para vehículos con platón, estacas o furgones.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 46
+            },
+            {
+              "code": "6.1.7.3",
+              "description": "Puertas o compuertas de carga que no dispongan de los cierres adecuados para impedir que estas se abran por las fuerzas normales que actúan en su movilización.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 47
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6.2",
+      "title": "REVISION INTERIOR",
+      "order": 2,
+      "subsections": [
+        {
+          "code": "6.2.1",
+          "title": "Habitaculo del Conductor y Pasajeros",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.2.1.1",
+              "description": "Asientos mal anclados o con riesgo de desprendimiento",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 51
+            },
+            {
+              "code": "6.2.1.2",
+              "description": "El numero de sillas excede con lo estipulado en la licencia de transito",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 52
+            },
+            {
+              "code": "6.2.1.3",
+              "description": "Elementos deteriorados, sueltos o con riesgo de desprendimiento que pueden ocasionar lesiones a los ocupantes del vehículo. (Asideros, manijas, y portaequipajes).",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 53
+            },
+            {
+              "code": "6.2.1.4",
+              "description": "La existencia en el interior del habitaculo o cabina de partes puntiagudas o con aristas que puedan lesionar a los ocupantes del vehiculo",
+              "defect_type": "A",
+              "observation": "",
+              "order": 4,
+              "source_row": 54
+            },
+            {
+              "code": "6.2.1.5",
+              "description": "Estado deficiente de las sillas o tapiceria (Rota, cortada, descocidos) en vehiculos de servicio publico o especial de pasajeros",
+              "defect_type": "A",
+              "observation": "",
+              "order": 5,
+              "source_row": 55
+            },
+            {
+              "code": "6.2.1.6",
+              "description": "Sillas, carteras y tapizados en mal estado (Rota, cortada, descocidos) en vehiculos de servicio particular.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 6,
+              "source_row": 56
+            },
+            {
+              "code": "6.2.1.7",
+              "description": "Estado deficiente de las chapas y seguros.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 7,
+              "source_row": 57
+            },
+            {
+              "code": "6.2.1.8",
+              "description": "Estado o funcionamiento deficiente del sistema de cierre y apertura de puertas de servicio",
+              "defect_type": "A",
+              "observation": "",
+              "order": 8,
+              "source_row": 58
+            },
+            {
+              "code": "6.2.1.9",
+              "description": "La inexistencia, mala sujecion o el mal funcionamiento de los timbres o dispositivos similares, en vehiculos de servicio publico o de transporte colectivo de pasajeros.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 9,
+              "source_row": 59
+            },
+            {
+              "code": "6.2.1.10",
+              "description": "Agujeros cortes o perforaciones visibles en el habitaculo o cabina, que permitan la entrada de gases o agua, o que representen peligro para los ocupantes del vehiculo",
+              "defect_type": "A",
+              "observation": "",
+              "order": 10,
+              "source_row": 60
+            },
+            {
+              "code": "6.2.1.11",
+              "description": "Tubo de escape en el habitaculo o cabina de pasajeros o conductor",
+              "defect_type": "A",
+              "observation": "",
+              "order": 11,
+              "source_row": 61
+            },
+            {
+              "code": "6.2.1.12",
+              "description": "Bateria ubicada en el habitaculo de pasajeros o del conductor",
+              "defect_type": "A",
+              "observation": "",
+              "order": 12,
+              "source_row": 62
+            }
+          ]
+        },
+        {
+          "code": "6.2.2",
+          "title": "Cinturones de seguridad y sus anclajes Todo vehiculo debe estar equipado con cinturones de seguridad, cumpliendo los requisitos legales o reglamentarios nacionales aplicables vigentes. Mediante inspeccion sensorial se debe comprobar.",
+          "order": 2,
+          "items": [
+            {
+              "code": "6.2.2.1",
+              "description": "Inexistencia o mal funcionamiento del cinturon (Anclajes dañados, cierre del broche no funcional, sujecion deficiente y/o deterioro evidente en el area de la correa).",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 65
+            },
+            {
+              "code": "6.2.2.2",
+              "description": "Anclajes o sistemas de broche con materiales diferentes a metalicos ( No debe haber sistema de cierre plastico o con hebilla plastica)",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 66
+            }
+          ]
+        },
+        {
+          "code": "6.2.3",
+          "title": "Dispositivo de control de velocidad",
+          "order": 3,
+          "items": [
+            {
+              "code": "6.2.3.1",
+              "description": "La inexistencia de los elementos de control de velocidad y tipos de alarma reglamentados de acuerdo con la modalidad de servicio para los vehículos de transporte público de pasajeros por carretera, vehículos de servicio público especial (turismo, empresarial y escolar)",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 68
+            },
+            {
+              "code": "6.2.3.2",
+              "description": "La no ubicación de la alarma o dispositivo sonoro en la parte delantera del vehículo, dentro del área dispuesta para los pasajeros y no audible para el conductor del vehículo",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 69
+            },
+            {
+              "code": "6.2.3.3",
+              "description": "La no ubicación de la pantalla digital en la parte superior delantera del vehículo, dentro del área dispuesta para los pasajeros",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 70
+            },
+            {
+              "code": "6.2.3.4",
+              "description": "El mal funcionamiento del sistema de chequeo que no permita verificar el dispositivo sonoro y la pantalla digital, al ser activado en estado de reposo, de acuerdo con el tipo de alarma correspondiente",
+              "defect_type": "A",
+              "observation": "",
+              "order": 4,
+              "source_row": 71
+            },
+            {
+              "code": "6.2.3.5",
+              "description": "La inexistencia de la calcomanía reglamentada para informar sobre la existencia del dispositivo de control de velocidades a los usuarios de los vehículos de transporte público de pasajeros por carretera, de servicio público especial (turismo, empresarial y escolar)",
+              "defect_type": "A",
+              "observation": "",
+              "order": 5,
+              "source_row": 72
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6.3",
+      "title": "ELEMENTOS PARA PRODUCIR RUIDO",
+      "order": 3,
+      "subsections": [
+        {
+          "code": "6.3.1",
+          "title": "Dispositivos sonoros no permitidos",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.3.1.1",
+              "description": "La existencia de algún tipo de dispositivo o accesorio diseñado para producir ruido, tales como válvulas, cornetas y pitos adaptados a los sistemas de bajo y de frenos de aire",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 76
+            },
+            {
+              "code": "6.3.1.2",
+              "description": "Ausencia o defectos como perforaciones no originales o fisuras de los sistemas de salidas de gases.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 77
+            },
+            {
+              "code": "6.3.1.3",
+              "description": "Presencia de resonadores en los sistemas de escape de gases",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 78
+            }
+          ]
+        },
+        {
+          "code": "6.3.2",
+          "title": "Bocina, pito o dispositivo acústico",
+          "order": 2,
+          "items": [
+            {
+              "code": "6.3.2.1",
+              "description": "El no funcionamiento de la bocina o dispositivo acústico",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 80
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6.4",
+      "title": "ALUMBRADO Y SEÑALIZACION",
+      "order": 4,
+      "subsections": [
+        {
+          "code": "6.4.1",
+          "title": "6.4.1",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.4.1.1",
+              "description": "El no funcionamiento de los comandos que encienden y conmutan las luces.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 83
+            },
+            {
+              "code": "6.4.1.2",
+              "description": "Mal estado ( Con riesgo de desprendimiento o ausencia de las pastas o vidrios) o no funcionamiento del sistema o conjunto de luces direccionales delanteras y direccionales traseras.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 2,
+              "source_row": 84
+            },
+            {
+              "code": "6.4.1.3",
+              "description": "Mal estado ( Con riesgo de desprendimiento o ausencia de las pastas o vidrios) o no funcionamiento del sistema o conjunto de luces de parada o freno.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 85
+            },
+            {
+              "code": "6.4.1.4",
+              "description": "Mal estado ( Con riesgo de desprendimiento o ausencia de las pastas o vidrios) o no funcionamiento del sistema o conjunto de luces de reversa.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 4,
+              "source_row": 86
+            },
+            {
+              "code": "6.4.1.5",
+              "description": "Mal estado ( Con riesgo de desprendimiento o ausencia de las pastas o vidrios) o no funcionamiento del sistema o conjunto de luces de estacionamiento.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 5,
+              "source_row": 87
+            },
+            {
+              "code": "6.4.1.6",
+              "description": "Mal estado ( Con riesgo de desprendimiento o ausencia de las pastas o vidrios) o no funcionamiento de las luces de posicion. NOTA: La cantidad y especificaciones de dichas luces son las que establezca la autoridad competente.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 6,
+              "source_row": 88
+            },
+            {
+              "code": "6.4.1.7",
+              "description": "El no funcionamiento de las luces o indicadores de tablero de instrumentos, ( Como minimo luces plenas o altas, bateria, aceite y falla de motor si aplica)",
+              "defect_type": "B",
+              "observation": "",
+              "order": 7,
+              "source_row": 89
+            },
+            {
+              "code": "6.4.1.8",
+              "description": "Mal estado o funcionamiento parcial de las luces interiores en los vehículos de servicio público de pasajeros.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 8,
+              "source_row": 90
+            },
+            {
+              "code": "6.4.1.9",
+              "description": "Falla total de las luces interiores en vehículos de servicio público de pasajeros.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 9,
+              "source_row": 91
+            },
+            {
+              "code": "6.4.1.10",
+              "description": "Inexistencia de las señales reflectivas reglamentarias, de acuerdo con las normas vigentes.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 10,
+              "source_row": 92
+            },
+            {
+              "code": "6.4.1.11",
+              "description": "Mal estado o el no funcionamiento de la luz que indica que se encuentra libre para prestar el servicio, en los vehículos públicos de servicio individual urbano.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 11,
+              "source_row": 93
+            },
+            {
+              "code": "6.4.1.12",
+              "description": "Testigos encendidos en el tablero de instrumentos que indican falla.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 12,
+              "source_row": 94
+            },
+            {
+              "code": "6.4.1.13",
+              "description": "Cantidad de luces minimas reglamentarias y/o color de luz emitido diferente en la estipulada en la reglamentacion vigente o disposiciones legales",
+              "defect_type": "A",
+              "observation": "",
+              "order": 13,
+              "source_row": 95
+            },
+            {
+              "code": "6.4.1.14",
+              "description": "Existencia de luces exploradoras traseras",
+              "defect_type": "A",
+              "observation": "",
+              "order": 14,
+              "source_row": 96
+            },
+            {
+              "code": "6.4.1.15",
+              "description": "Existencia de luces exploradoras delanteras por encima del nivel de las defensas, cuando no es un equipo original del fabricante",
+              "defect_type": "A",
+              "observation": "",
+              "order": 15,
+              "source_row": 97
+            },
+            {
+              "code": "6.4.1.16",
+              "description": "Inexistencia o mal funcionamiento del dispositivo de control de velocidad, para vehículos de servicio público de pasajeros en los que aplique, de acuerdo a la reglamentación vigente y con el procedimiento adoptado por la autoridad competente",
+              "defect_type": "A",
+              "observation": "",
+              "order": 16,
+              "source_row": 98
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6.5",
+      "title": "SALIDA DE EMERGENCIA",
+      "order": 5,
+      "subsections": [
+        {
+          "code": "6.5.1",
+          "title": "la inexistencia o mal funcionamiento de una (1) salida de emergencia en vehiculos de transporte colectivo de pasajeros con capacidad superior a 10 pasajeros sin incluir el conductor",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.5.1",
+              "description": "la inexistencia o mal funcionamiento de una (1) salida de emergencia en vehiculos de transporte colectivo de pasajeros con capacidad superior a 10 pasajeros sin incluir el conductor",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 101
+            }
+          ]
+        },
+        {
+          "code": "6.5.2",
+          "title": "La inexistencia del numero de salidas adicionales requeridas para vehiculos de transporte colectivo de pasajeros con capacidad superior a 15 pasajeros sin incluir el conductor.",
+          "order": 2,
+          "items": [
+            {
+              "code": "6.5.2",
+              "description": "La inexistencia del numero de salidas adicionales requeridas para vehiculos de transporte colectivo de pasajeros con capacidad superior a 15 pasajeros sin incluir el conductor.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 102
+            }
+          ]
+        },
+        {
+          "code": "6.5.3",
+          "title": "La falta de señalizacion, la imposibilidad de leer la leyenda \"SALIDA DE EMERGENCIA\" o ilegibilidad de la misma",
+          "order": 3,
+          "items": [
+            {
+              "code": "6.5.3",
+              "description": "La falta de señalizacion, la imposibilidad de leer la leyenda \"SALIDA DE EMERGENCIA\" o ilegibilidad de la misma",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 103
+            }
+          ]
+        },
+        {
+          "code": "6.5.4",
+          "title": "La inexistencia de mecanismos de expulsion o fragmentacion de la ventana dispuesta como salida de emergencia.",
+          "order": 4,
+          "items": [
+            {
+              "code": "6.5.4",
+              "description": "La inexistencia de mecanismos de expulsion o fragmentacion de la ventana dispuesta como salida de emergencia.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 104
+            }
+          ]
+        },
+        {
+          "code": "6.5.5",
+          "title": "Empuñadura exterior a la puerta dispuesta como salida de emergencia, ubicada a una altura superior a 1,8 m al pavimento.",
+          "order": 5,
+          "items": [
+            {
+              "code": "6.5.5",
+              "description": "Empuñadura exterior a la puerta dispuesta como salida de emergencia, ubicada a una altura superior a 1,8 m al pavimento.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 105
+            }
+          ]
+        },
+        {
+          "code": "6.5.6",
+          "title": "La puerta dispuesta como salida de emergencia no abre hacia fuera del vehiculo sino hacia adentro, y debe estar libre de obstaculos no originales.",
+          "order": 6,
+          "items": [
+            {
+              "code": "6.5.6",
+              "description": "La puerta dispuesta como salida de emergencia no abre hacia fuera del vehiculo sino hacia adentro, y debe estar libre de obstaculos no originales.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 106
+            }
+          ]
+        },
+        {
+          "code": "6.5.7",
+          "title": "Inexistencia o mal funcionamiento del mecanismo de control manual que impide el acionamiento involuntario cuando el vehiculo esta dotado de escotillas eyectables dispuestas como salidas de emergencia.",
+          "order": 7,
+          "items": [
+            {
+              "code": "6.5.7",
+              "description": "Inexistencia o mal funcionamiento del mecanismo de control manual que impide el acionamiento involuntario cuando el vehiculo esta dotado de escotillas eyectables dispuestas como salidas de emergencia.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 107
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6.6",
+      "title": "EMISIONES CONTAMINANTES",
+      "order": 6,
+      "subsections": [
+        {
+          "code": "6.6.3",
+          "title": "6.6.3",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.6.3.1",
+              "description": "El uso de tubos de escape de descarga horizontal en vehiculos con capacidad de carga superior a tres (3) toneladas o diseñados para transportar mas de diecinueve (19) pasajeros que transiten por la via publica. Los tubos de escape de dichos vehiculos deben estar dirigidos hacia arriba y efectuar su descarga a una altura no inferior a tres (3) metros del suelo o a quince (15) por encima del techo de la cabina del vehiculo. Este item es aplicable solo a modelos anteriores a 2001",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 110
+            },
+            {
+              "code": "6.6.3.2",
+              "description": "Roturas, perforaciones o salidas adicionales al diseño del vehiculo o diferente a las del equipo original, desacople o inexistencia del sistema de escape. NOTA: Algunos diseños de sistemas de escape en vehículos, tienen un pequeño orificio, el cual no debe considerarse defecto.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 111
+            }
+          ]
+        },
+        {
+          "code": "6.6.4",
+          "title": "Emisiones de presion sonora (ruido)",
+          "order": 2,
+          "items": [
+            {
+              "code": "6.6.4.1",
+              "description": "Los vehiculos cuyas emisiones de ruido superen los niveles de presion sonora especificados en la reglamentacion vigente",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 113
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6.7",
+      "title": "SISTEMA DE FRENOS",
+      "order": 7,
+      "subsections": [
+        {
+          "code": "6.7.1",
+          "title": "Pedal",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.7.1.1",
+              "description": "Carrera o movimiento de los dispositivos de accionamiento del sistema de frenos sean excesivos o insuficientes.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 117
+            },
+            {
+              "code": "6.7.1.2",
+              "description": "Retorno inadecuado del pedal.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 118
+            },
+            {
+              "code": "6.7.1.3",
+              "description": "Desajuste o desgaste de la superficie antideslizante del pedal.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 119
+            }
+          ]
+        },
+        {
+          "code": "6.7.2",
+          "title": "Guayas (Freno Estacionamiento)",
+          "order": 2,
+          "items": [
+            {
+              "code": "6.7.2.1",
+              "description": "Mandos, fundas, cables, guayas o varillas deterioradas, con riesgo de desprendimiento o interferencia con otros elementos.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 1,
+              "source_row": 121
+            },
+            {
+              "code": "6.7.2.2",
+              "description": "inexistencia o Inoperancia del freno de estacionamiento",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 122
+            }
+          ]
+        },
+        {
+          "code": "6.7.3",
+          "title": "Bomba de Vacío (Booster) o compresor y anclajes Esta revision se debe realizar a los vehiculos que dispongan de un circuito neumatico para el sistema de frenado. Mediante una inspeccion sensorial se debe comprobar:",
+          "order": 3,
+          "items": [
+            {
+              "code": "6.7.3.1",
+              "description": "Bomba de vacío deteriorada o con riesgo de desprendimiento",
+              "defect_type": "B",
+              "observation": "",
+              "order": 1,
+              "source_row": 125
+            },
+            {
+              "code": "6.7.3.2",
+              "description": "Compresor deteriorado o con riesgo de desprendimiento",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 126
+            },
+            {
+              "code": "6.7.3.3",
+              "description": "Presion o vacío insuficiente para permitir al menos dos frenadas a fondo consecutivas, una vez que se pone e marcha el dispositivo de aviso.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 127
+            },
+            {
+              "code": "6.7.3.4",
+              "description": "Perdida de aire que provoca un descenso apreciable de la presion o vacío de funcionamiento",
+              "defect_type": "A",
+              "observation": "",
+              "order": 4,
+              "source_row": 128
+            },
+            {
+              "code": "6.7.3.5",
+              "description": "Inexistencia de un dispositivo capaz de indicar los limites de la presion o vacío de funcionamiento.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 5,
+              "source_row": 129
+            }
+          ]
+        },
+        {
+          "code": "6.7.4",
+          "title": "Valvula de regulacion del freno de estacionamiento (Parqueo o de mano) Esta revision se debe realizar a los vehiculos que dispongan de un circuito neumatico para el sistema de frenado. Mediante una inspeccion sensorial se debe detectar:",
+          "order": 4,
+          "items": [
+            {
+              "code": "6.7.4.1",
+              "description": "Mal estado del mando que opera el sistema de freno de estacionamiento(de parqueo o de mano)",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 132
+            },
+            {
+              "code": "6.7.4.2",
+              "description": "Presencia de fugas de aire al tener acionado el freno neumatico",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 133
+            }
+          ]
+        },
+        {
+          "code": "6.7.5",
+          "title": "Valvulas de frenado",
+          "order": 5,
+          "items": [
+            {
+              "code": "6.7.5.1",
+              "description": "Montaje con riesgo de desprendimiento",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 135
+            },
+            {
+              "code": "6.7.5.2",
+              "description": "Goteo continuo de aceite del compresor",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 136
+            },
+            {
+              "code": "6.7.5.3",
+              "description": "Descarga visible de fluido hidraulico en los frenos mixtos",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 137
+            }
+          ]
+        },
+        {
+          "code": "6.7.6",
+          "title": "Tanques o depositos de presion",
+          "order": 6,
+          "items": [
+            {
+              "code": "6.7.6.1",
+              "description": "Tanques o depósitos de presión excesivamente corroídos, con pérdidas o con riesgo de desprendimiento.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 139
+            },
+            {
+              "code": "6.7.6.2",
+              "description": "Dispositivo de purga inoperante (si no es automático).",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 140
+            }
+          ]
+        },
+        {
+          "code": "6.7.7",
+          "title": "Acoplamiento de los frenos de la unidad tractora",
+          "order": 7,
+          "items": [
+            {
+              "code": "6.7.7.1",
+              "description": "Valvulas de aislamiento o de cierre automaticas deterioradas o con perdida de aire excesiva y audible.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 142
+            }
+          ]
+        },
+        {
+          "code": "6.7.8",
+          "title": "Servofreno(Booster). Cilindro de mando (Sistemas Hidraulicos)",
+          "order": 8,
+          "items": [
+            {
+              "code": "6.7.8.1",
+              "description": "Servofreno deteriorado o con fugas.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 144
+            },
+            {
+              "code": "6.7.8.2",
+              "description": "Cilindro de mando (bomba de freno) deteriorado, con pérdidas o con riesgo de desprendimiento.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 145
+            },
+            {
+              "code": "6.7.8.3",
+              "description": "Cantidad de líquido de frenos por fuera de los niveles indicados.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 3,
+              "source_row": 146
+            },
+            {
+              "code": "6.7.8.4",
+              "description": "Ausencia de la tapa del depósito de líquido de frenos.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 4,
+              "source_row": 147
+            }
+          ]
+        },
+        {
+          "code": "6.7.9",
+          "title": "Tubos y Mangueras de frenos",
+          "order": 9,
+          "items": [
+            {
+              "code": "6.7.9.1",
+              "description": "Pérdidas de líquido en los tubos, mangueras o en las conexiones.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 149
+            },
+            {
+              "code": "6.7.9.2",
+              "description": "Tubos o mangueras deteriorados, dañados, deformados o excesivamente corroídos o con riesgo de desprendimiento.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 150
+            }
+          ]
+        },
+        {
+          "code": "6.7.10",
+          "title": "Cilindros del sistema de frenado",
+          "order": 10,
+          "items": [
+            {
+              "code": "6.7.10.1",
+              "description": "Cilindros confugas visibles o con riesgo de desprendimiento (Faltan tornillos)",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 152
+            }
+          ]
+        },
+        {
+          "code": "6.7.11",
+          "title": "Valvula que permite o limita el frenado y valvula sensora o compensadora de carga o la que haga sus veces En caso de estar equipado con este dispositivo, Mediante inspeccion sensorial se debe detectar",
+          "order": 11,
+          "items": [
+            {
+              "code": "6.7.11.1",
+              "description": "Valvulas con fugas visibles o con riesgo de desprendimiento",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 155
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6.8",
+      "title": "SUSPENSIÓN",
+      "order": 8,
+      "subsections": [
+        {
+          "code": "6.8.1",
+          "title": "Mediante inspeccion sensorial y con ayuda del detector de juegos mecanicos cuando sea aplicable, se debe detectar.",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.8.1.1",
+              "description": "Mal estado de las fijaciones al chasis de los elementos de la suspensión.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 159
+            },
+            {
+              "code": "6.8.1.2",
+              "description": "Elementos de la suspensión rotos, deformados o con excesiva corrosión.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 160
+            },
+            {
+              "code": "6.8.1.3",
+              "description": "Inexistencia de alguno de los amortiguadores.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 161
+            },
+            {
+              "code": "6.8.1.4",
+              "description": "Fugas visibles o audibles en los amortiguadores.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 4,
+              "source_row": 162
+            },
+            {
+              "code": "6.8.1.5",
+              "description": "Inexistencia o mal estado de los topes de suspensión.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 5,
+              "source_row": 163
+            },
+            {
+              "code": "6.8.1.6",
+              "description": "Mal estado o fijación defectuosa de muelles, resortes, tijeras, espirales, ballestas o barras de torsión.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 6,
+              "source_row": 164
+            },
+            {
+              "code": "6.8.1.7",
+              "description": "Barra estabilizadora mal anclada o fracturada, cuando sea aplicable.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 7,
+              "source_row": 165
+            },
+            {
+              "code": "6.8.1.8",
+              "description": "Tirantes o brazos de la suspensión deformados o con riesgo de desprendimiento.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 8,
+              "source_row": 166
+            },
+            {
+              "code": "6.8.1.9",
+              "description": "Inexistencia o ruptura de los guardapolvos de las rótulas de suspensión.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 9,
+              "source_row": 167
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6.9",
+      "title": "TAXIMETROS Con ayuda del probador de taxímetros, se busca comprobar: NOTA: se aplica para los tipos de taxímetros que tomen la señal a partir del giro de algun elemento del vehiculo.",
+      "order": 9,
+      "subsections": [
+        {
+          "code": "6.9.1",
+          "title": "La inexistencia del Taxímetro, para los vehículos que estén obligados a usarlo",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.9.1",
+              "description": "La inexistencia del Taxímetro, para los vehículos que estén obligados a usarlo",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 172
+            }
+          ]
+        },
+        {
+          "code": "6.9.2",
+          "title": "Error en la medida de distancia, por fuera de ± 2%, tomada en una distancia entre 300 m y 1 km",
+          "order": 2,
+          "items": [
+            {
+              "code": "6.9.2",
+              "description": "Error en la medida de distancia, por fuera de ± 2%, tomada en una distancia entre 300 m y 1 km",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 173
+            }
+          ]
+        },
+        {
+          "code": "6.9.3",
+          "title": "Error en la medida de tiempo, por fuera de ± 2%, tomada en un tiempo entre 60 s a 180 s",
+          "order": 3,
+          "items": [
+            {
+              "code": "6.9.3",
+              "description": "Error en la medida de tiempo, por fuera de ± 2%, tomada en un tiempo entre 60 s a 180 s",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 174
+            }
+          ]
+        },
+        {
+          "code": "6.9.4",
+          "title": "El Taxímetro está ubicado en un sitio donde no es visible para cualquier pasajero",
+          "order": 4,
+          "items": [
+            {
+              "code": "6.9.4",
+              "description": "El Taxímetro está ubicado en un sitio donde no es visible para cualquier pasajero",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 175
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6.10",
+      "title": "DIRECCION",
+      "order": 10,
+      "subsections": [
+        {
+          "code": "6.10.1",
+          "title": "Mediante inspeccion sensorial con movimiento alternos lado a lado del volante de la direccion y con ayuda de juegos mecanicos (holguras), cuando sea aplicable,se debe detectar:",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.10.1.1",
+              "description": "Fijación defectuosa o riesgo de desprendimiento en cualquiera de los elementos de la dirección.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 179
+            },
+            {
+              "code": "6.10.1.2",
+              "description": "Holguras y/o desgaste excesivo en cualquiera de los elementos que conforman el sistema de direccion",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 180
+            },
+            {
+              "code": "6.10.1.3",
+              "description": "Guardapolvos inexistentes o rotos.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 3,
+              "source_row": 181
+            },
+            {
+              "code": "6.10.1.4",
+              "description": "Fugas visibles sin goteo continuo en el sistema hidráulico de Dirección",
+              "defect_type": "B",
+              "observation": "",
+              "order": 4,
+              "source_row": 182
+            },
+            {
+              "code": "6.10.1.5",
+              "description": "Fugas visibles en la caja o en el sistema hidráulico de dirección.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 5,
+              "source_row": 183
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6.11",
+      "title": "RINES Y LLANTAS Mediante inspeccion sensorial y con ayuda de un medidor de profundidad, se busca detectar:",
+      "order": 11,
+      "subsections": [
+        {
+          "code": "6.11.1",
+          "title": "Falta de una o mas tuercas, espárragos, tornillos, o pernos en cualquier rueda del carro.",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.11.1",
+              "description": "Falta de una o mas tuercas, espárragos, tornillos, o pernos en cualquier rueda del carro.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 187
+            }
+          ]
+        },
+        {
+          "code": "6.11.2",
+          "title": "Deformaciones excesivas en cualquiera de los rines.",
+          "order": 2,
+          "items": [
+            {
+              "code": "6.11.2",
+              "description": "Deformaciones excesivas en cualquiera de los rines.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 188
+            }
+          ]
+        },
+        {
+          "code": "6.11.3",
+          "title": "Fisuras en cualquiera de los rines.",
+          "order": 3,
+          "items": [
+            {
+              "code": "6.11.3",
+              "description": "Fisuras en cualquiera de los rines.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 189
+            }
+          ]
+        },
+        {
+          "code": "6.11.4",
+          "title": "Inexistencia de algún rin o llanta, en los vehículos que usan más de dos ruedas por eje.",
+          "order": 4,
+          "items": [
+            {
+              "code": "6.11.4",
+              "description": "Inexistencia de algún rin o llanta, en los vehículos que usan más de dos ruedas por eje.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 190
+            }
+          ]
+        },
+        {
+          "code": "6.11.5",
+          "title": "Deterioro, deformaciones, fisuras o riesgo de desprendimiento en los aros de los rines artilleros.",
+          "order": 5,
+          "items": [
+            {
+              "code": "6.11.5",
+              "description": "Deterioro, deformaciones, fisuras o riesgo de desprendimiento en los aros de los rines artilleros.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 191
+            }
+          ]
+        },
+        {
+          "code": "6.11.6",
+          "title": "Profundidad de labrado en el área de mayor desgaste de cualquiera de las llantas de servicio, menor a 1.6 mm o inferior a las marcas de desgaste. Es aplicable a vehículos con peso bruto vehicular hasta 3500 kg",
+          "order": 6,
+          "items": [
+            {
+              "code": "6.11.6",
+              "description": "Profundidad de labrado en el área de mayor desgaste de cualquiera de las llantas de servicio, menor a 1.6 mm o inferior a las marcas de desgaste. Es aplicable a vehículos con peso bruto vehicular hasta 3500 kg",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 192
+            }
+          ]
+        },
+        {
+          "code": "6.11.7",
+          "title": "Profundidad de labrado en el área de mayor desgaste de cualquiera de las llantas de servicio, es menor a 2 mm o es inferior a las marcas de desgaste. Se aplica para vehículos con peso bruto vehicular igual o mayor a 3500 kg",
+          "order": 7,
+          "items": [
+            {
+              "code": "6.11.7",
+              "description": "Profundidad de labrado en el área de mayor desgaste de cualquiera de las llantas de servicio, es menor a 2 mm o es inferior a las marcas de desgaste. Se aplica para vehículos con peso bruto vehicular igual o mayor a 3500 kg",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 193
+            }
+          ]
+        },
+        {
+          "code": "6.11.8",
+          "title": "Inexistencia de la llanta de repuesto o adecuado estado para su servicio, cuando aplique.",
+          "order": 8,
+          "items": [
+            {
+              "code": "6.11.8",
+              "description": "Inexistencia de la llanta de repuesto o adecuado estado para su servicio, cuando aplique.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 194
+            }
+          ]
+        },
+        {
+          "code": "6.11.9",
+          "title": "Despegue o rotura en las bandas laterales de una o más llantas.",
+          "order": 9,
+          "items": [
+            {
+              "code": "6.11.9",
+              "description": "Despegue o rotura en las bandas laterales de una o más llantas.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 1,
+              "source_row": 195
+            }
+          ]
+        },
+        {
+          "code": "6.11.10",
+          "title": "Protuberancias, deformaciones, despegue o rotura en la banda de rodamiento de una o más llantas.",
+          "order": 10,
+          "items": [
+            {
+              "code": "6.11.10",
+              "description": "Protuberancias, deformaciones, despegue o rotura en la banda de rodamiento de una o más llantas.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 196
+            }
+          ]
+        },
+        {
+          "code": "6.11.11",
+          "title": "En cualquiera de las llantas con banda de rodamiento regrabadas, a excepcion cuando es permitido por el fabricante.",
+          "order": 11,
+          "items": [
+            {
+              "code": "6.11.11",
+              "description": "En cualquiera de las llantas con banda de rodamiento regrabadas, a excepcion cuando es permitido por el fabricante.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 197
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6.12",
+      "title": "MOTOR",
+      "order": 12,
+      "subsections": [
+        {
+          "code": "6.12.1",
+          "title": "Pérdidas de aceite sin goteo continuo.",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.12.1",
+              "description": "Pérdidas de aceite sin goteo continuo.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 1,
+              "source_row": 200
+            }
+          ]
+        },
+        {
+          "code": "6.12.2",
+          "title": "Pérdidas de aceite con goteo continuo.",
+          "order": 2,
+          "items": [
+            {
+              "code": "6.12.2",
+              "description": "Pérdidas de aceite con goteo continuo.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 201
+            }
+          ]
+        },
+        {
+          "code": "6.12.3",
+          "title": "Mal estado mala distribucion y/o sujecion del cableado electrico",
+          "order": 3,
+          "items": [
+            {
+              "code": "6.12.3",
+              "description": "Mal estado mala distribucion y/o sujecion del cableado electrico",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 202
+            }
+          ]
+        },
+        {
+          "code": "6.12.4",
+          "title": "Batería con soporte suelto o con riesgo de desprendimiento.",
+          "order": 4,
+          "items": [
+            {
+              "code": "6.12.4",
+              "description": "Batería con soporte suelto o con riesgo de desprendimiento.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 1,
+              "source_row": 203
+            }
+          ]
+        },
+        {
+          "code": "6.12.5",
+          "title": "Fugas en el sistema de refrigeración.",
+          "order": 5,
+          "items": [
+            {
+              "code": "6.12.5",
+              "description": "Fugas en el sistema de refrigeración.",
+              "defect_type": "B",
+              "observation": "",
+              "order": 1,
+              "source_row": 204
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6.13",
+      "title": "SISTEMA DE COMBUSTIBLE",
+      "order": 13,
+      "subsections": [
+        {
+          "code": "6.13.1",
+          "title": "Mala fijación, deterioro excesivo, fugas, riesgo de desprendimiento del depósito y de los conductos del combustible.",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.13.1",
+              "description": "Mala fijación, deterioro excesivo, fugas, riesgo de desprendimiento del depósito y de los conductos del combustible.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 207
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6.14",
+      "title": "TRANSMISION",
+      "order": 14,
+      "subsections": [
+        {
+          "code": "6.14.1",
+          "title": "Juegos mecanicos (holguras) excesivos en las juntas del cardan",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.14.1",
+              "description": "Juegos mecanicos (holguras) excesivos en las juntas del cardan",
+              "defect_type": "B",
+              "observation": "",
+              "order": 1,
+              "source_row": 210
+            }
+          ]
+        },
+        {
+          "code": "6.14.2",
+          "title": "Perdidas de aceite sin goteo continuo en la transmision o caja",
+          "order": 2,
+          "items": [
+            {
+              "code": "6.14.2",
+              "description": "Perdidas de aceite sin goteo continuo en la transmision o caja",
+              "defect_type": "B",
+              "observation": "",
+              "order": 1,
+              "source_row": 211
+            }
+          ]
+        },
+        {
+          "code": "6.14.3",
+          "title": "Perdidas de aceite con goteo continuo en la transmision o caja",
+          "order": 3,
+          "items": [
+            {
+              "code": "6.14.3",
+              "description": "Perdidas de aceite con goteo continuo en la transmision o caja",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 212
+            }
+          ]
+        },
+        {
+          "code": "6.14.4",
+          "title": "Existencia de holguras excesivas en los elementos de la transmision",
+          "order": 4,
+          "items": [
+            {
+              "code": "6.14.4",
+              "description": "Existencia de holguras excesivas en los elementos de la transmision",
+              "defect_type": "B",
+              "observation": "",
+              "order": 1,
+              "source_row": 213
+            }
+          ]
+        },
+        {
+          "code": "6.14.5",
+          "title": "Inexistencia de protector de desprendimiento del cardan trasero",
+          "order": 5,
+          "items": [
+            {
+              "code": "6.14.5",
+              "description": "Inexistencia de protector de desprendimiento del cardan trasero",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 214
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "ANEXO A A1",
+      "title": "ADAPTACIONES DE LOS VEHICULOS UTILIZADOS PARA IMPARTIR LA ENSEÑANZA AUTOMOVILISTICA En los vehiculos autorizados para impartir la enseñanza automovilistica se debe verificar:",
+      "order": 15,
+      "subsections": [
+        {
+          "code": "10.2.1",
+          "title": "Los tipo automoviles,camperos, camionetas y microbuses:",
+          "order": 1,
+          "items": [
+            {
+              "code": "10.2.1.1",
+              "description": "Inexistencia o mal funcionamento de doble pedal de freno y embrague",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 220
+            },
+            {
+              "code": "10.2.1.2",
+              "description": "Inexistencia de doble juego de espejos retrovisores interiores",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 221
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "10.3",
+      "title": "10.3",
+      "order": 16,
+      "subsections": [
+        {
+          "code": "10.3.1",
+          "title": "Los tipo busetas, buses, camiones rigidos y vehiculos articulados.",
+          "order": 1,
+          "items": [
+            {
+              "code": "10.3.1.1",
+              "description": "Inexistencia o mal funcionamento de doble pedal de freno y embrague",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 223
+            },
+            {
+              "code": "10.3.1.2",
+              "description": "Inexistencia de doble juego de espejos retrovisores exteriores",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 224
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "10.4",
+      "title": "10.4",
+      "order": 17,
+      "subsections": [
+        {
+          "code": "10.4.1",
+          "title": "Se deben verificar visualmente que los vehiculos de las categorias B1, C1, B2, C2, B3 y C3 las siguientes caracteristicas externas:",
+          "order": 1,
+          "items": [
+            {
+              "code": "10.4.1.1",
+              "description": "La pintura del vehiculo cuenta con un color diferente al blanco en su parte exterior, parcial o totalmente",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 226
+            },
+            {
+              "code": "10.4.1.2",
+              "description": "Ausencia o ilegibilidad en la parte anterior y posterior del vehículo de la palabra ENSEÑANZA; ambas en letras de color verde, cortadas en material retrorreflectivo con dimensiones mínimas de ocho (8) centímetros de alto, por cuatro (4) centímetros de ancho",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 227
+            },
+            {
+              "code": "10.4.1.3",
+              "description": "Ausencia o ilegibilidad del logotipo y razon social del Centro de Enseñanza Automovilistica y el numero telefònico.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 228
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "ANEXO B A2",
+      "title": "TERCERA PLACA PARA VEHICULOS DE SERVICIO PUBLICO",
+      "order": 18,
+      "subsections": [
+        {
+          "code": "",
+          "title": "En los vehiculos autorizados para impartir la enseñanza automovilistica se debe verificar:",
+          "order": 1,
+          "items": [
+            {
+              "code": "6.1.1.14",
+              "description": "la inexistencia de la placa impresa en los vehiculos de servicio publico en los costados o en el techo del vehiculo.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 245
+            },
+            {
+              "code": "6.1.1.15",
+              "description": "La ubicación de la placa en la parte externa lateral en lugar diferente a la parte media de cada costado en el caso de los vehiculos clase bus, buseta y microbus.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 245
+            },
+            {
+              "code": "6.1.1.16",
+              "description": "La ubicación de la placa en la parte externa lateral en lugar diferente a la parte media de las puertas traseras en el caso de los vehiculos automovil y camioneta.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 245
+            },
+            {
+              "code": "6.1.1.17",
+              "description": "La ubicación de la placa en la parte externa lateral en un lugar diferente a la parte media de las puertas delanteras en el caso de los vehiculos tipo campero.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 4,
+              "source_row": 245
+            },
+            {
+              "code": "6.1.1.18",
+              "description": "La ubicación de la placa en la parte externa lateral en un lugar diferente a la parte media de las puertas de la cabina en el caso de los vehiculos de transporte de carga.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 5,
+              "source_row": 245
+            },
+            {
+              "code": "6.1.1.19",
+              "description": "La ubicación de la placa en el techo en lugar diferente al eje longitudinal del vehiculo cualquiera sea la clase de vehiculo ( debe estar colocada en cualquier punto a lo largo del eje longitudinal en forma perpendicular y centrada transversalmente).",
+              "defect_type": "A",
+              "observation": "",
+              "order": 6,
+              "source_row": 245
+            },
+            {
+              "code": "6.1.1.20",
+              "description": "La ubicación de la placa en la parte externalateral en lugar diferente a la parte media del segundo cuerpo de cada costado del vehiculo en los vehiculos de servicio publico de transporte masivo, tipo articulado y biarticulado.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 7,
+              "source_row": 245
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "",
+      "title": "CINTAS RETRORREFLECTIVAS  RES. NUMERO 1572 DE 2019",
+      "order": 19,
+      "subsections": [
+        {
+          "code": "",
+          "title": "",
+          "order": 1,
+          "items": [
+            {
+              "code": "1",
+              "description": "Inexistencia de la demarcación con Cintas Retrorreflectivas en los vehículos obligados a llevarlas",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 246
+            },
+            {
+              "code": "2",
+              "description": "Demarcación con Cintas Retrorreflectivas No Reglamentarias",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 246
+            }
+          ]
+        },
+        {
+          "code": "3",
+          "title": "Uso del elemento",
+          "order": 2,
+          "items": [
+            {
+              "code": "3.1",
+              "description": "Utilizar cintas u otros elementos retroreflectivos de color blanco en la parte trasera, ni de color rojo en la parte delantera.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 246
+            },
+            {
+              "code": "3.2",
+              "description": "Las cintas retrorreflectivas no podrán estar cubiertas por ningún elemento o en condiciones que impidan su visibilidad.",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 246
+            },
+            {
+              "code": "4",
+              "description": "Color No Reglamentario",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 246
+            }
+          ]
+        },
+        {
+          "code": "5",
+          "title": "No cumplir con las especificaciones del embebido",
+          "order": 3,
+          "items": [
+            {
+              "code": "5.1",
+              "description": "Embebido no presente",
+              "defect_type": "A",
+              "observation": "",
+              "order": 1,
+              "source_row": 246
+            },
+            {
+              "code": "5.2",
+              "description": "Embebido no visible o borroso",
+              "defect_type": "A",
+              "observation": "",
+              "order": 2,
+              "source_row": 246
+            },
+            {
+              "code": "5.3",
+              "description": "Embebido con información errónea",
+              "defect_type": "A",
+              "observation": "",
+              "order": 3,
+              "source_row": 246
+            },
+            {
+              "code": "5.4",
+              "description": "Embebido con información faltante",
+              "defect_type": "A",
+              "observation": "",
+              "order": 4,
+              "source_row": 246
+            },
+            {
+              "code": "5.5",
+              "description": "Embebido alterado",
+              "defect_type": "A",
+              "observation": "",
+              "order": 5,
+              "source_row": 246
+            }
+          ]
+        }
+      ]
+    } 
+  ]
+}
