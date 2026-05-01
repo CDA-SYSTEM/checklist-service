@@ -2,9 +2,9 @@ name: Deploy Django Docker
 
 on:
   push:
-    branches: [ "develop", "feature/config-deploy" ]
+    branches: [ "main", "feat/config-deploy" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "main" ]
 
 permissions:
   packages: write
