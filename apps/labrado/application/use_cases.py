@@ -1,89 +1,56 @@
-from datetime import UTC, datetime
+"""
+Casos de uso del bounded context Labrado.
+
+Depende SOLO de Ports (ABCs) y Domain Entities/Services.
+Cero imports de infrastructure o repositorios de otros bounded contexts.
+"""
 
 from apps.common.domain.exceptions import ValidationError
-from apps.inspections.infrastructure.repository import InspectionRepository
-
-
-def _compute_labrado(axles: list[dict]):
-    computed_axles = []
-    axle_minimums = []
-
-    for axle in axles:
-        computed_wheels = []
-        wheel_minimums = []
-
-        for wheel in axle['wheels']:
-            computed_tires = []
-            tire_minimums = []
-
-            for tire in wheel['tires']:
-                measures = [tire['outer_mm'], tire['middle_mm'], tire['inner_mm']]
-                if any(value < 0 for value in measures):
-                    raise ValidationError('Las medidas de labrado no pueden ser negativas.')
-
-                minimum = min(measures)
-                tire_minimums.append(minimum)
-                computed_tires.append(
-                    {
-                        'tire_code': tire['tire_code'],
-                        'outer_mm': tire['outer_mm'],
-                        'middle_mm': tire['middle_mm'],
-                        'inner_mm': tire['inner_mm'],
-                        'minimum_mm': minimum,
-                    }
-                )
-
-            wheel_minimum = min(tire_minimums) if tire_minimums else 0
-            wheel_minimums.append(wheel_minimum)
-            computed_wheels.append(
-                {
-                    'wheel_code': wheel['wheel_code'],
-                    'minimum_mm': wheel_minimum,
-                    'tires': computed_tires,
-                }
-            )
-
-        axle_minimum = min(wheel_minimums) if wheel_minimums else 0
-        axle_minimums.append(axle_minimum)
-        computed_axles.append(
-            {
-                'axle_code': axle['axle_code'],
-                'minimum_mm': axle_minimum,
-                'wheels': computed_wheels,
-            }
-        )
-
-    return {
-        'axles': computed_axles,
-        'minimum_mm': min(axle_minimums) if axle_minimums else 0,
-        'measured_at': datetime.now(UTC),
-    }
+from apps.inspections.domain.entities import InspectionEntity
+from apps.labrado.domain.ports import LabradoRepositoryPort
+from apps.labrado.domain.services import compute_labrado
 
 
 class LabradoUseCases:
-    def __init__(self, inspection_repository=None):
-        self.inspection_repository = inspection_repository or InspectionRepository()
+    """Orquesta las operaciones de negocio de mediciones de labrado."""
 
-    def upsert_labrado(self, inspection_id: str, axles: list[dict]):
+    def __init__(self, repository: LabradoRepositoryPort):
+        self.repository = repository
+
+    def upsert_labrado(
+        self, inspection_id: str, axles: list[dict]
+    ) -> dict:
         if not axles:
             raise ValidationError('Debe enviar al menos un eje de labrado.')
 
-        self.inspection_repository.get_by_id(inspection_id)
-        labrado_payload = _compute_labrado(axles)
+        # Verificar que la inspección existe
+        self.repository.get_inspection(inspection_id)
 
-        updated = self.inspection_repository.update(inspection_id, {'labrado': labrado_payload})
-        return self.get_labrado_by_inspection(str(updated.id))
+        # Calcular labrado usando el Domain Service (lógica pura)
+        labrado_vo = compute_labrado(axles)
 
-    def get_labrado_by_inspection(self, inspection_id: str):
-        inspection = self.inspection_repository.get_by_id(inspection_id)
+        # Persistir via port
+        updated_inspection = self.repository.save_labrado(
+            inspection_id, labrado_vo
+        )
+
+        return self._build_labrado_response(updated_inspection)
+
+    def get_labrado_by_inspection(self, inspection_id: str) -> dict:
+        inspection = self.repository.get_inspection(inspection_id)
+        return self._build_labrado_response(inspection)
+
+    @staticmethod
+    def _build_labrado_response(inspection: InspectionEntity) -> dict:
+        """Construye la respuesta de labrado a partir de una InspectionEntity."""
         if inspection.labrado is None:
             return {
-                'inspection_id': str(inspection.id),
+                'inspection_id': inspection.id,
                 'labrado': None,
             }
 
         return {
-            'inspection_id': str(inspection.id),
+            'inspection_id': inspection.id,
             'labrado': {
                 'minimum_mm': inspection.labrado.minimum_mm,
                 'measured_at': inspection.labrado.measured_at,

@@ -91,11 +91,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASE_NAME = env("MONGO_DB_NAME")
 DATABASE_HOST = env("MONGO_HOST")
 DATABASE_PORT = env.int("MONGO_PORT")
+DATABASE_USER = env("MONGO_USER", default=None)
+DATABASE_PASSWORD = env("MONGO_PASSWORD", default=None)
 
 connect(
     db=DATABASE_NAME,
     host=DATABASE_HOST,
     port=DATABASE_PORT,
+    username=DATABASE_USER,
+    password=DATABASE_PASSWORD,
     alias="default",
 )
 

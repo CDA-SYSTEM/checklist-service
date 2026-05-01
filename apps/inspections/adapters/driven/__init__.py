@@ -1,0 +1,1 @@
+# Inspections driven adapters package

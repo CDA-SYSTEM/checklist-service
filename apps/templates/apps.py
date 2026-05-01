@@ -12,7 +12,7 @@ class TemplatesConfig(AppConfig):
     _seed_executed = False
 
     def ready(self):
-        from apps.templates.infrastructure.documents import ChecklistTemplate
+        from apps.templates.adapters.driven.documents import ChecklistTemplate
 
         ChecklistTemplate.ensure_indexes()
 
@@ -21,8 +21,11 @@ class TemplatesConfig(AppConfig):
 
         TemplatesConfig._seed_executed = True
         try:
-            from apps.templates.infrastructure.seed import bootstrap_templates
+            from apps.templates.adapters.driven.seed import bootstrap_templates
 
             bootstrap_templates()
         except Exception as exc:
-            logger.warning('No fue posible ejecutar el seed de plantillas al iniciar: %s', exc)
+            logger.warning(
+                'No fue posible ejecutar el seed de plantillas al iniciar: %s',
+                exc,
+            )

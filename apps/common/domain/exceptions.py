@@ -1,25 +1,36 @@
+"""
+Excepciones de dominio del checklist-service.
+
+Estas excepciones son puras del dominio: NO contienen conceptos HTTP.
+El mapeo a códigos HTTP se realiza en la capa de presentación
+(exception_handlers.py).
+"""
+
+
 class DomainError(Exception):
-    status_code = 400
+    """Excepción base para errores de dominio."""
+
     code = 'domain_error'
 
-    def __init__(self, message: str, *, code: str | None = None, status_code: int | None = None):
+    def __init__(self, message: str, *, code: str | None = None):
         super().__init__(message)
         if code:
             self.code = code
-        if status_code is not None:
-            self.status_code = status_code
 
 
 class NotFoundError(DomainError):
-    status_code = 404
+    """Recurso no encontrado en el dominio."""
+
     code = 'not_found'
 
 
 class ConflictError(DomainError):
-    status_code = 409
+    """Conflicto de estado o duplicado en el dominio."""
+
     code = 'conflict'
 
 
 class ValidationError(DomainError):
-    status_code = 400
+    """Error de validación de reglas de negocio."""
+
     code = 'validation_error'
