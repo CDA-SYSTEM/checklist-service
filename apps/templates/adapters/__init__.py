@@ -1,0 +1,1 @@
+# Templates adapters package

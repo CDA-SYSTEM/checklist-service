@@ -1,0 +1,1 @@
+# Inspections driving adapters package

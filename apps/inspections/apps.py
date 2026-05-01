@@ -12,6 +12,6 @@ class InspectionsConfig(AppConfig):
             return
 
         InspectionsConfig._indexes_ready = True
-        from apps.inspections.infrastructure.documents import Inspection
+        from apps.inspections.adapters.driven.documents import Inspection
 
         Inspection.ensure_indexes()

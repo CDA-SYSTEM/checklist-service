@@ -1,213 +1,209 @@
+"""
+Casos de uso del bounded context Inspections.
+
+Depende SOLO de Ports (ABCs) y Entities (dataclasses).
+Cero imports de infrastructure, documents, MongoEngine.
+"""
+
+from dataclasses import asdict
 from datetime import UTC, datetime
 
 from apps.common.domain.constants import GeneralResult, InspectionStatus, VehicleType
 from apps.common.domain.exceptions import ConflictError, ValidationError
-from apps.inspections.infrastructure.repository import InspectionRepository
-from apps.templates.infrastructure.documents import ChecklistTemplate
-
-
-def _section_to_dict(section):
-    return {
-        'code': section.code,
-        'title': section.title,
-        'order': section.order,
-        'subsections': [
-            {
-                'code': subsection.code,
-                'title': subsection.title,
-                'order': subsection.order,
-                'items': [
-                    {
-                        'code': item.code,
-                        'description': item.description,
-                        'defect_type': item.defect_type,
-                        'observation': item.observation,
-                        'order': item.order,
-                    }
-                    for item in subsection.items
-                ],
-            }
-            for subsection in section.subsections
-        ],
-    }
-
-
-def _inspection_to_dict(inspection):
-    labrado_data = None
-    if inspection.labrado:
-        labrado_data = {
-            'minimum_mm': inspection.labrado.minimum_mm,
-            'measured_at': inspection.labrado.measured_at,
-            'axles': [
-                {
-                    'axle_code': axle.axle_code,
-                    'minimum_mm': axle.minimum_mm,
-                    'wheels': [
-                        {
-                            'wheel_code': wheel.wheel_code,
-                            'minimum_mm': wheel.minimum_mm,
-                            'tires': [
-                                {
-                                    'tire_code': tire.tire_code,
-                                    'outer_mm': tire.outer_mm,
-                                    'middle_mm': tire.middle_mm,
-                                    'inner_mm': tire.inner_mm,
-                                    'minimum_mm': tire.minimum_mm,
-                                }
-                                for tire in wheel.tires
-                            ],
-                        }
-                        for wheel in axle.wheels
-                    ],
-                }
-                for axle in inspection.labrado.axles
-            ],
-        }
-
-    return {
-        'id': str(inspection.id),
-        'plate': inspection.plate,
-        'vehicle_id': inspection.vehicle_id,
-        'client_id': inspection.client_id,
-        'vehicle_type': inspection.vehicle_type,
-        'inspection_datetime': inspection.inspection_datetime,
-        'operators': inspection.operators,
-        'status': inspection.status,
-        'responses': [
-            {
-                'section_code': item.section_code,
-                'subsection_code': item.subsection_code,
-                'item_code': item.item_code,
-                'response': item.response,
-                'defect_type': item.defect_type,
-                'observation': item.observation,
-            }
-            for item in inspection.responses
-        ],
-        'observations': inspection.observations,
-        'general_result': inspection.general_result,
-        'template_ref': {
-            'template_id': inspection.template_ref.template_id,
-            'code': inspection.template_ref.code,
-            'version': inspection.template_ref.version,
-        },
-        'template_snapshot': inspection.template_snapshot,
-        'labrado': labrado_data,
-        'created_at': inspection.created_at,
-        'updated_at': inspection.updated_at,
-    }
+from apps.inspections.domain.entities import (
+    InspectionEntity,
+    InspectionItemResponseEntity,
+    TemplateReferenceVO,
+)
+from apps.inspections.domain.ports import InspectionRepositoryPort
+from apps.templates.domain.ports import TemplateRepositoryPort
 
 
 class InspectionUseCases:
-    def __init__(self, repository=None):
-        self.repository = repository or InspectionRepository()
+    """Orquesta las operaciones de negocio sobre inspecciones vehiculares."""
+
+    def __init__(
+        self,
+        inspection_repository: InspectionRepositoryPort,
+        template_repository: TemplateRepositoryPort,
+    ):
+        self.inspection_repository = inspection_repository
+        self.template_repository = template_repository
+
+    # ------------------------------------------------------------------
+    # Resolución de templates (via port inyectado)
+    # ------------------------------------------------------------------
 
     def _resolve_template(self, vehicle_type: str, template_id: str | None):
         if vehicle_type not in VehicleType.ALL:
             raise ValidationError('Tipo de vehiculo no valido.')
 
         if template_id:
-            template = ChecklistTemplate.objects(id=template_id).first()
-            if not template:
-                raise ValidationError('El template_id no existe.')
+            template = self.template_repository.get_by_id(template_id)
         else:
-            template = (
-                ChecklistTemplate.objects(supported_vehicle_types=vehicle_type, active=True)
-                .order_by('-version')
-                .first()
+            template = self.template_repository.get_active_by_vehicle_type(
+                vehicle_type
             )
-            if not template:
-                raise ValidationError('No existe plantilla activa para ese tipo de vehiculo.')
 
         if vehicle_type not in template.supported_vehicle_types:
-            raise ValidationError('La plantilla no corresponde al tipo de vehiculo de la inspeccion.')
+            raise ValidationError(
+                'La plantilla no corresponde al tipo de vehiculo de la inspeccion.'
+            )
 
         return template
 
-    def _prepare_template_payload(self, template):
+    def _build_template_snapshot(self, template) -> dict:
+        """Genera un snapshot serializable del template para la inspección."""
         return {
-            'template_ref': {
-                'template_id': str(template.id),
-                'code': template.code,
-                'version': template.version,
-            },
-            'template_snapshot': {
-                'code': template.code,
-                'name': template.name,
-                'version': template.version,
-                'supported_vehicle_types': template.supported_vehicle_types,
-                'sections': [_section_to_dict(section) for section in template.sections],
-            },
+            'code': template.code,
+            'name': template.name,
+            'version': template.version,
+            'supported_vehicle_types': template.supported_vehicle_types,
+            'sections': [
+                {
+                    'code': s.code,
+                    'title': s.title,
+                    'order': s.order,
+                    'subsections': [
+                        {
+                            'code': ss.code,
+                            'title': ss.title,
+                            'order': ss.order,
+                            'items': [
+                                {
+                                    'code': i.code,
+                                    'description': i.description,
+                                    'defect_type': i.defect_type,
+                                    'observation': i.observation,
+                                    'order': i.order,
+                                }
+                                for i in ss.items
+                            ],
+                        }
+                        for ss in s.subsections
+                    ],
+                }
+                for s in template.sections
+            ],
         }
 
-    def list_inspections(self):
-        return [_inspection_to_dict(i) for i in self.repository.list_all()]
+    # ------------------------------------------------------------------
+    # Consultas
+    # ------------------------------------------------------------------
 
-    def get_inspection(self, inspection_id: str):
-        return _inspection_to_dict(self.repository.get_by_id(inspection_id))
+    def list_inspections(self) -> list[InspectionEntity]:
+        return self.inspection_repository.list_all()
 
-    def create_inspection(self, payload: dict):
-        template = self._resolve_template(payload['vehicle_type'], payload.get('template_id'))
-        template_payload = self._prepare_template_payload(template)
+    def get_inspection(self, inspection_id: str) -> InspectionEntity:
+        return self.inspection_repository.get_by_id(inspection_id)
 
-        create_payload = {
-            'plate': payload['plate'].upper(),
-            'vehicle_id': payload['vehicle_id'],
-            'client_id': payload.get('client_id', ''),
-            'vehicle_type': payload['vehicle_type'],
-            'inspection_datetime': payload.get('inspection_datetime', datetime.now(UTC)),
-            'operators': payload.get('operators', []),
-            'responses': payload.get('responses', []),
-            'observations': payload.get('observations', ''),
-            'status': InspectionStatus.BORRADOR,
-            **template_payload,
-        }
+    def find_by_plate(self, plate: str) -> list[InspectionEntity]:
+        return self.inspection_repository.by_plate(plate)
 
-        created = self.repository.create(create_payload)
-        return _inspection_to_dict(created)
-
-    def update_inspection(self, inspection_id: str, payload: dict):
-        current = self.repository.get_by_id(inspection_id)
-        if current.status == InspectionStatus.CERRADA:
-            raise ConflictError('La inspeccion esta cerrada y no puede modificarse.')
-
-        updated = self.repository.update(inspection_id, payload)
-        return _inspection_to_dict(updated)
-
-    def save_draft(self, inspection_id: str, payload: dict):
-        payload['status'] = InspectionStatus.BORRADOR
-        updated = self.update_inspection(inspection_id, payload)
-        return updated
-
-    def mark_in_progress(self, inspection_id: str, payload: dict):
-        payload['status'] = InspectionStatus.EN_PROGRESO
-        updated = self.update_inspection(inspection_id, payload)
-        return updated
-
-    def close_inspection(self, inspection_id: str, payload: dict):
-        if payload.get('general_result') not in GeneralResult.ALL:
-            raise ValidationError('Debe indicar resultado_general valido para cerrar la inspeccion.')
-
-        payload['status'] = InspectionStatus.CERRADA
-        updated = self.update_inspection(inspection_id, payload)
-        return updated
-
-    def delete_inspection(self, inspection_id: str):
-        self.repository.delete(inspection_id)
-        return {'id': inspection_id}
-
-    def find_by_plate(self, plate: str):
-        return [_inspection_to_dict(i) for i in self.repository.by_plate(plate)]
-
-    def find_by_status(self, status: str):
+    def find_by_status(self, status: str) -> list[InspectionEntity]:
         if status not in InspectionStatus.ALL:
             raise ValidationError('Estado de inspeccion no valido.')
-        return [_inspection_to_dict(i) for i in self.repository.by_status(status)]
+        return self.inspection_repository.by_status(status)
 
-    def find_by_vehicle_id(self, vehicle_id: str):
-        return [_inspection_to_dict(i) for i in self.repository.by_vehicle_id(vehicle_id)]
+    def find_by_vehicle_id(self, vehicle_id: int) -> list[InspectionEntity]:
+        return self.inspection_repository.by_vehicle_id(vehicle_id)
 
-    def find_by_date_range(self, start_date, end_date):
+    def find_by_date_range(
+        self, start_date: datetime, end_date: datetime
+    ) -> list[InspectionEntity]:
         if start_date > end_date:
             raise ValidationError('El rango de fechas es invalido.')
-        return [_inspection_to_dict(i) for i in self.repository.by_date_range(start_date, end_date)]
+        return self.inspection_repository.by_date_range(start_date, end_date)
+
+    # ------------------------------------------------------------------
+    # Comandos
+    # ------------------------------------------------------------------
+
+    def create_inspection(self, payload: dict) -> InspectionEntity:
+        template = self._resolve_template(
+            payload['vehicle_type'], payload.get('template_id')
+        )
+
+        entity = InspectionEntity(
+            plate=payload['plate'].upper(),
+            vehicle_id=payload['vehicle_id'],
+            client_id=payload.get('client_id'),
+            vehicle_type=payload['vehicle_type'],
+            inspection_datetime=payload.get(
+                'inspection_datetime', datetime.now(UTC)
+            ),
+            inspector_id=payload['inspector_id'],
+            observations=payload.get('observations', ''),
+            status=InspectionStatus.BORRADOR,
+            template_ref=TemplateReferenceVO(
+                template_id=str(template.id),
+                code=template.code,
+                version=template.version,
+            ),
+            template_snapshot=self._build_template_snapshot(template),
+            responses=[
+                InspectionItemResponseEntity(**r)
+                for r in payload.get('responses', [])
+            ],
+        )
+        return self.inspection_repository.create(entity)
+
+    def update_inspection(
+        self, inspection_id: str, payload: dict
+    ) -> InspectionEntity:
+        current = self.inspection_repository.get_by_id(inspection_id)
+        if current.status == InspectionStatus.CERRADA:
+            raise ConflictError(
+                'La inspeccion esta cerrada y no puede modificarse.'
+            )
+
+        updated_entity = InspectionEntity(
+            id=inspection_id,
+            plate=payload.get('plate', current.plate),
+            vehicle_id=payload.get('vehicle_id', current.vehicle_id),
+            client_id=payload.get('client_id', current.client_id),
+            vehicle_type=current.vehicle_type,
+            inspection_datetime=payload.get(
+                'inspection_datetime', current.inspection_datetime
+            ),
+            inspector_id=payload.get('inspector_id', current.inspector_id),
+            status=payload.get('status', current.status),
+            observations=payload.get('observations', current.observations),
+            general_result=payload.get('general_result', current.general_result),
+            template_ref=current.template_ref,
+            template_snapshot=current.template_snapshot,
+            responses=[
+                InspectionItemResponseEntity(**r)
+                for r in payload.get('responses', [])
+            ]
+            if 'responses' in payload
+            else current.responses,
+            labrado=current.labrado,
+        )
+        return self.inspection_repository.update(inspection_id, updated_entity)
+
+    def save_draft(
+        self, inspection_id: str, payload: dict
+    ) -> InspectionEntity:
+        payload['status'] = InspectionStatus.BORRADOR
+        return self.update_inspection(inspection_id, payload)
+
+    def mark_in_progress(
+        self, inspection_id: str, payload: dict
+    ) -> InspectionEntity:
+        payload['status'] = InspectionStatus.EN_PROGRESO
+        return self.update_inspection(inspection_id, payload)
+
+    def close_inspection(
+        self, inspection_id: str, payload: dict
+    ) -> InspectionEntity:
+        if payload.get('general_result') not in GeneralResult.ALL:
+            raise ValidationError(
+                'Debe indicar resultado_general valido para cerrar la inspeccion.'
+            )
+        payload['status'] = InspectionStatus.CERRADA
+        return self.update_inspection(inspection_id, payload)
+
+    def delete_inspection(self, inspection_id: str) -> dict:
+        self.inspection_repository.delete(inspection_id)
+        return {'id': inspection_id}

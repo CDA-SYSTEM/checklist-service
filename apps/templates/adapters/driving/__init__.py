@@ -1,0 +1,1 @@
+# Templates driving adapters package
