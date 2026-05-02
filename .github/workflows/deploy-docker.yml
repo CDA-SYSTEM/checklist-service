@@ -1,0 +1,83 @@
+name: Deploy Django Docker
+
+on:
+  push:
+    branches: [ "main", "feat/config-deploy" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  packages: write
+  contents: read
+
+jobs:
+  deploy-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set repository name to lowercase
+        run: echo "REPO_LC=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/${{ env.REPO_LC }}:latest
+            ghcr.io/${{ env.REPO_LC }}:${{ github.sha }}
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.REMOTE_PORT }}
+          script: |
+            # Iniciar sesión en GHCR desde el servidor
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+            # Descargar la última imagen
+            docker pull ghcr.io/${{ env.REPO_LC }}:latest
+
+            # Detener y eliminar contenedor existente
+            docker stop checklist-service || true
+            docker rm checklist-service || true
+
+            # Iniciar nuevo contenedor
+            docker run -d \
+              --name checklist-service \
+              -p ${{ secrets.PORT }}:8000 \
+              -e PORT="${{ secrets.PORT }}" \
+              -e SECRET_KEY="${{ secrets.SECRET_KEY }}" \
+              -e DEBUG="${{ secrets.DEBUG }}" \
+              -e MONGO_DB_NAME="${{ secrets.MONGO_DB_NAME }}" \
+              -e MONGO_HOST="${{ secrets.MONGO_HOST }}" \
+              -e MONGO_PORT="${{ secrets.MONGO_PORT }}" \
+              -e MONGO_USER="${{ secrets.MONGO_USER }}" \
+              -e MONGO_PASSWORD="${{ secrets.MONGO_PASSWORD }}" \
+              -e ALLOWED_HOSTS="${{ secrets.ALLOWED_HOSTS }}" \
+              -e CORS_ALLOW_ALL_ORIGINS="${{ secrets.CORS_ALLOW_ALL_ORIGINS }}" \
+              -e CORS_ALLOWED_ORIGINS="${{ secrets.CORS_ALLOWED_ORIGINS }}" \
+              -e AUTO_SEED_TEMPLATES="${{ secrets.AUTO_SEED_TEMPLATES }}" \
+              -e DJANGO_SETTINGS_MODULE="config.settings.prod" \
+              --restart unless-stopped \
+              ghcr.io/${{ env.REPO_LC }}:latest
+
+            # Limpiar imágenes antiguas
+            docker image prune -f
