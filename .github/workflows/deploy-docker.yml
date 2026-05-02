@@ -69,6 +69,8 @@ jobs:
               -e MONGO_DB_NAME="${{ secrets.MONGO_DB_NAME }}" \
               -e MONGO_HOST="${{ secrets.MONGO_HOST }}" \
               -e MONGO_PORT="${{ secrets.MONGO_PORT }}" \
+              -e MONGO_USER="${{ secrets.MONGO_USER }}" \
+              -e MONGO_PASSWORD="${{ secrets.MONGO_PASSWORD }}" \
               -e ALLOWED_HOSTS="${{ secrets.ALLOWED_HOSTS }}" \
               -e CORS_ALLOW_ALL_ORIGINS="${{ secrets.CORS_ALLOW_ALL_ORIGINS }}" \
               -e CORS_ALLOWED_ORIGINS="${{ secrets.CORS_ALLOWED_ORIGINS }}" \
