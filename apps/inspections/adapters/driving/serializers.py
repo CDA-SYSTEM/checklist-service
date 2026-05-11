@@ -78,9 +78,15 @@ class InspectionOutputSerializer(serializers.Serializer):
     )
     template_ref = TemplateReferenceSerializer()
     template_snapshot = serializers.JSONField()
-    labrado = serializers.JSONField(required=False, allow_null=True)
+    labrado = serializers.SerializerMethodField(allow_null=True)
     created_at = serializers.DateTimeField()
     updated_at = serializers.DateTimeField()
+
+    def get_labrado(self, obj):
+        if getattr(obj, "labrado", None):
+            from dataclasses import asdict
+            return asdict(obj.labrado)
+        return getattr(obj, "labrado", None)
 
 
 class DateRangeQuerySerializer(serializers.Serializer):

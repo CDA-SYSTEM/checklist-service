@@ -23,11 +23,6 @@ urlpatterns = [
         name='inspections-collection',
     ),
     path(
-        'inspections/<str:inspection_id>',
-        InspectionDetailView.as_view(),
-        name='inspections-detail',
-    ),
-    path(
         'inspections/by-plate/<str:plate>',
         InspectionByPlateView.as_view(),
         name='inspections-by-plate',
@@ -46,6 +41,11 @@ urlpatterns = [
         'inspections/by-vehicle/<str:vehicle_id>',
         InspectionByVehicleView.as_view(),
         name='inspections-by-vehicle',
+    ),
+    path(
+        'inspections/<str:inspection_id>',
+        InspectionDetailView.as_view(),
+        name='inspections-detail',
     ),
     path(
         'inspections/<str:inspection_id>/draft',
