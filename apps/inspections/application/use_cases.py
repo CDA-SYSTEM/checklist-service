@@ -152,10 +152,6 @@ class InspectionUseCases:
         self, inspection_id: str, payload: dict
     ) -> InspectionEntity:
         current = self.inspection_repository.get_by_id(inspection_id)
-        if current.status == InspectionStatus.CERRADA:
-            raise ConflictError(
-                'La inspeccion esta cerrada y no puede modificarse.'
-            )
 
         updated_entity = InspectionEntity(
             id=inspection_id,
