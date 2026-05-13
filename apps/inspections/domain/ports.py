@@ -50,3 +50,18 @@ class InspectionRepositoryPort(ABC):
         self, start_date: datetime, end_date: datetime
     ) -> list[InspectionEntity]:
         ...
+
+    @abstractmethod
+    def get_paginated(
+        self,
+        page: int = 1,
+        page_size: int = 20,
+        plate: str | None = None,
+        status: str | None = None,
+        vehicle_id: int | None = None,
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> tuple[list[InspectionEntity], int]:
+        """
+        Retorna tupla (items, total_count) con paginación y filtros opcionales.
+        """

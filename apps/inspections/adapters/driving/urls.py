@@ -14,6 +14,7 @@ from apps.inspections.adapters.driving.views import (
     InspectionDetailView,
     InspectionInProgressView,
     InspectionSaveDraftView,
+    InspectionSearchView,
 )
 
 urlpatterns = [
@@ -41,6 +42,11 @@ urlpatterns = [
         'inspections/by-vehicle/<str:vehicle_id>',
         InspectionByVehicleView.as_view(),
         name='inspections-by-vehicle',
+    ),
+    path(
+        'inspections/search',
+        InspectionSearchView.as_view(),
+        name='inspections-search',
     ),
     path(
         'inspections/<str:inspection_id>',

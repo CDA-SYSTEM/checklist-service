@@ -115,6 +115,30 @@ class InspectionUseCases:
             raise ValidationError('El rango de fechas es invalido.')
         return self.inspection_repository.by_date_range(start_date, end_date)
 
+    def list_inspections_paginated(
+        self,
+        page: int = 1,
+        page_size: int = 20,
+        plate: str | None = None,
+        status: str | None = None,
+        vehicle_id: int | None = None,
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> tuple[list[InspectionEntity], int]:
+        if status and status not in InspectionStatus.ALL:
+            raise ValidationError('Estado de inspeccion no valido.')
+        if start_date and end_date and start_date > end_date:
+            raise ValidationError('El rango de fechas es invalido.')
+        return self.inspection_repository.get_paginated(
+            page=page,
+            page_size=page_size,
+            plate=plate,
+            status=status,
+            vehicle_id=vehicle_id,
+            start_date=start_date,
+            end_date=end_date,
+        )
+
     # ------------------------------------------------------------------
     # Comandos
     # ------------------------------------------------------------------

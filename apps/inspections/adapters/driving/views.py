@@ -11,7 +11,9 @@ from apps.inspections.adapters.driving.serializers import (
     DateRangeQuerySerializer,
     InspectionCloseSerializer,
     InspectionCreateSerializer,
+    InspectionFilterSerializer,
     InspectionOutputSerializer,
+    InspectionPaginatedOutputSerializer,
     InspectionStatusTransitionSerializer,
     InspectionUpdateSerializer,
 )
@@ -134,3 +136,42 @@ class InspectionCloseView(APIView):
         )
         out = InspectionOutputSerializer(entity)
         return success_response(out.data, message='Inspeccion cerrada.')
+
+
+class InspectionSearchView(APIView):
+    def get(self, request):
+        serializer = InspectionFilterSerializer(data=request.query_params)
+        serializer.is_valid(raise_exception=True)
+
+        validated = serializer.validated_data
+        page = validated.get('page', 1)
+        page_size = validated.get('page_size', 20)
+
+        use_cases = get_inspection_use_cases()
+        items, total_count = use_cases.list_inspections_paginated(
+            page=page,
+            page_size=page_size,
+            plate=validated.get('plate'),
+            status=validated.get('status'),
+            vehicle_id=validated.get('vehicle_id'),
+            start_date=validated.get('start_date'),
+            end_date=validated.get('end_date'),
+        )
+
+        total_pages = (total_count + page_size - 1) // page_size
+
+        output_serializer = InspectionOutputSerializer(items, many=True)
+        pagination_info = {
+            'page': page,
+            'page_size': page_size,
+            'total_items': total_count,
+            'total_pages': total_pages,
+            'has_next': page < total_pages,
+            'has_previous': page > 1,
+        }
+
+        response_data = {
+            'items': output_serializer.data,
+            'pagination': pagination_info,
+        }
+        return success_response(response_data)

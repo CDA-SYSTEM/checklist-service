@@ -92,3 +92,34 @@ class InspectionOutputSerializer(serializers.Serializer):
 class DateRangeQuerySerializer(serializers.Serializer):
     start = serializers.DateTimeField()
     end = serializers.DateTimeField()
+
+
+class InspectionPaginationSerializer(serializers.Serializer):
+    page = serializers.IntegerField(min_value=1, default=1)
+    page_size = serializers.IntegerField(min_value=1, max_value=100, default=20)
+
+
+class InspectionFilterSerializer(serializers.Serializer):
+    plate = serializers.CharField(required=False, allow_blank=True)
+    status = serializers.ChoiceField(
+        choices=InspectionStatus.ALL, required=False
+    )
+    vehicle_id = serializers.IntegerField(required=False, min_value=1)
+    start_date = serializers.DateTimeField(required=False)
+    end_date = serializers.DateTimeField(required=False)
+    page = serializers.IntegerField(min_value=1, default=1)
+    page_size = serializers.IntegerField(min_value=1, max_value=100, default=20)
+
+
+class PaginationInfoSerializer(serializers.Serializer):
+    page = serializers.IntegerField()
+    page_size = serializers.IntegerField()
+    total_items = serializers.IntegerField()
+    total_pages = serializers.IntegerField()
+    has_next = serializers.BooleanField()
+    has_previous = serializers.BooleanField()
+
+
+class InspectionPaginatedOutputSerializer(serializers.Serializer):
+    items = InspectionOutputSerializer(many=True)
+    pagination = PaginationInfoSerializer()
