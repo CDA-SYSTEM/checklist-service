@@ -6,7 +6,7 @@ Driving adapters — traducen entre HTTP request/response y el dominio.
 
 from rest_framework import serializers
 
-from apps.common.domain.constants import GeneralResult, InspectionStatus, VehicleType
+from apps.common.domain.constants import InspectionStatus, VehicleType
 
 
 class InspectionItemResponseSerializer(serializers.Serializer):
@@ -55,7 +55,7 @@ class InspectionUpdateSerializer(serializers.Serializer):
 
 
 class InspectionCloseSerializer(InspectionUpdateSerializer):
-    general_result = serializers.ChoiceField(choices=GeneralResult.ALL)
+    pass
 
 
 class InspectionStatusTransitionSerializer(InspectionUpdateSerializer):

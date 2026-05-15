@@ -73,7 +73,7 @@ class InspectionMapper:
                     subsection_code=r.subsection_code,
                     item_code=r.item_code,
                     response=r.response,
-                    defect_type=r.defect_type or '',
+                    defect_type=r.defect_type,
                     observation=r.observation or '',
                 )
                 for r in doc.responses

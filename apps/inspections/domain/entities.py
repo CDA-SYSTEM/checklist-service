@@ -10,6 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime
 
+from apps.common.domain.exceptions import ValidationError
 
 # ---------------------------------------------------------------------------
 # Value Objects
@@ -32,7 +33,7 @@ class InspectionItemResponseEntity:
     subsection_code: str
     item_code: str
     response: str
-    defect_type: str = ''
+    defect_type: str | None = None
     observation: str = ''
 
 
@@ -102,3 +103,12 @@ class InspectionEntity:
     labrado: LabradoMeasurementVO | None = None
     created_at: datetime | None = None
     updated_at: datetime | None = None
+
+    def validate_ready_for_close(self) -> None:
+        """
+        Valida que la inspección cumpla los requisitos mínimos para cerrarse.
+        """
+        if not self.responses:
+            raise ValidationError("La inspección debe tener el registro de las respuestas para ser cerrada.")
+        if not self.labrado:
+            raise ValidationError("La inspección debe tener el registro de labrado para ser cerrada.")

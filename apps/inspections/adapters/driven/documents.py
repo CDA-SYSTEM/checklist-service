@@ -33,7 +33,7 @@ class InspectionItemResponse(EmbeddedDocument):
     subsection_code = StringField(required=True)
     item_code = StringField(required=True)
     response = StringField(required=True)
-    defect_type = StringField(choices=DefectType.ALL)
+    defect_type = StringField(choices=DefectType.ALL, null=True, required=False)
     observation = StringField(default='')
 
 

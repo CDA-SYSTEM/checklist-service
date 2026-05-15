@@ -217,10 +217,23 @@ class InspectionUseCases:
     def close_inspection(
         self, inspection_id: str, payload: dict
     ) -> InspectionEntity:
-        if payload.get('general_result') not in GeneralResult.ALL:
-            raise ValidationError(
-                'Debe indicar resultado_general valido para cerrar la inspeccion.'
+        current = self.inspection_repository.get_by_id(inspection_id)
+        if current.status == InspectionStatus.CERRADA:
+            raise ConflictError(
+                'La inspeccion ya se encuentra cerrada.'
             )
+
+        test_entity = InspectionEntity(
+            responses=[
+                InspectionItemResponseEntity(**r)
+                for r in payload.get('responses', [])
+            ]
+            if 'responses' in payload
+            else current.responses,
+            labrado=current.labrado,
+        )
+        test_entity.validate_ready_for_close()
+
         payload['status'] = InspectionStatus.CERRADA
         return self.update_inspection(inspection_id, payload)
 
