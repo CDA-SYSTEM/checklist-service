@@ -35,4 +35,11 @@ class LabradoUpdateSerializer(serializers.Serializer):
 
 class LabradoOutputSerializer(serializers.Serializer):
     inspection_id = serializers.CharField()
-    labrado = serializers.JSONField(allow_null=True)
+    labrado = serializers.SerializerMethodField(allow_null=True)
+
+    def get_labrado(self, obj):
+        labrado_data = getattr(obj, "labrado", None) if not isinstance(obj, dict) else obj.get("labrado")
+        if labrado_data:
+            from dataclasses import asdict
+            return asdict(labrado_data) if hasattr(labrado_data, '__dataclass_fields__') else labrado_data
+        return None

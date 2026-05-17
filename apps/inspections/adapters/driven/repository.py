@@ -5,7 +5,7 @@ Driven Adapter — Implementación MongoDB del InspectionRepositoryPort.
 from datetime import datetime
 
 from apps.common.domain.exceptions import NotFoundError
-from apps.inspections.adapters.driven.documents import Inspection, LabradoMeasurement
+from apps.inspections.adapters.driven.documents import Inspection, LabradoMeasurement, InspectionItemResponse
 from apps.inspections.adapters.driven.mappers import InspectionMapper
 from apps.inspections.domain.entities import InspectionEntity
 from apps.inspections.domain.ports import InspectionRepositoryPort
@@ -61,8 +61,17 @@ class MongoInspectionRepository(InspectionRepositoryPort):
             if value is not None:
                 setattr(doc, key, value)
 
-        if entity.responses:
-            doc.responses = [r.__dict__ for r in entity.responses]
+        doc.responses = [
+            InspectionItemResponse(
+                section_code=r.section_code,
+                subsection_code=r.subsection_code,
+                item_code=r.item_code,
+                response=r.response,
+                defect_type=r.defect_type,
+                observation=r.observation
+            )
+            for r in entity.responses
+        ]
 
         if entity.labrado:
             from apps.inspections.adapters.driven.documents import (
@@ -129,3 +138,45 @@ class MongoInspectionRepository(InspectionRepositoryPort):
             inspection_datetime__lte=end_date,
         ).order_by('-inspection_datetime')
         return [InspectionMapper.to_entity(d) for d in docs]
+
+    def get_paginated(
+        self,
+        page: int = 1,
+        page_size: int = 20,
+        plate: str | None = None,
+        status: str | None = None,
+        vehicle_id: int | None = None,
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> tuple[list[InspectionEntity], int]:
+        query = {}
+
+        if plate:
+            query['plate__iexact'] = plate
+
+        if status:
+            query['status'] = status
+
+        if vehicle_id:
+            query['vehicle_id'] = vehicle_id
+
+        if start_date and end_date:
+            query['inspection_datetime__gte'] = start_date
+            query['inspection_datetime__lte'] = end_date
+        elif start_date:
+            query['inspection_datetime__gte'] = start_date
+        elif end_date:
+            query['inspection_datetime__lte'] = end_date
+
+        total_count = Inspection.objects(**query).count()
+
+        offset = (page - 1) * page_size
+        docs = (
+            Inspection.objects(**query)
+            .order_by('-inspection_datetime')
+            .skip(offset)
+            .limit(page_size)
+        )
+
+        items = [InspectionMapper.to_entity(d) for d in docs]
+        return items, total_count
