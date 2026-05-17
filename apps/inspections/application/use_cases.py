@@ -15,7 +15,7 @@ from apps.inspections.domain.entities import (
     InspectionItemResponseEntity,
     TemplateReferenceVO,
 )
-from apps.inspections.domain.ports import InspectionRepositoryPort
+from apps.inspections.domain.ports import EntityExistencePort, InspectionRepositoryPort
 from apps.templates.domain.ports import TemplateRepositoryPort
 
 
@@ -26,9 +26,11 @@ class InspectionUseCases:
         self,
         inspection_repository: InspectionRepositoryPort,
         template_repository: TemplateRepositoryPort,
+        existence_validator: EntityExistencePort | None = None,
     ):
         self.inspection_repository = inspection_repository
         self.template_repository = template_repository
+        self.existence_validator = existence_validator
 
     # ------------------------------------------------------------------
     # Resolución de templates (via port inyectado)
@@ -147,6 +149,12 @@ class InspectionUseCases:
         template = self._resolve_template(
             payload['vehicle_type'], payload.get('template_id')
         )
+
+        if self.existence_validator:
+            self.existence_validator.assert_vehicle_exists(payload['vehicle_id'])
+            client_id = payload.get('client_id')
+            if client_id is not None:
+                self.existence_validator.assert_client_exists(client_id)
 
         entity = InspectionEntity(
             plate=payload['plate'].upper(),
