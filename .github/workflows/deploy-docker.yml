@@ -75,6 +75,7 @@ jobs:
               -e CORS_ALLOW_ALL_ORIGINS="${{ secrets.CORS_ALLOW_ALL_ORIGINS }}" \
               -e CORS_ALLOWED_ORIGINS="${{ secrets.CORS_ALLOWED_ORIGINS }}" \
               -e AUTO_SEED_TEMPLATES="${{ secrets.AUTO_SEED_TEMPLATES }}" \
+              -e API_SECRET_KEY="${{ secrets.API_SECRET_KEY }}" \
               -e DJANGO_SETTINGS_MODULE="config.settings.prod" \
               --restart unless-stopped \
               ghcr.io/${{ env.REPO_LC }}:latest
