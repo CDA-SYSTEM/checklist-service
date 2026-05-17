@@ -40,6 +40,17 @@ class RabbitMQExistenceValidator(EntityExistencePort):
         self._vehicle_queue = vehicle_queue
         self._timeout_s = timeout_ms / 1000
 
+    def _parse_rpc_response(self, result: dict, entity_label: str, entity_id: int) -> None:
+        if result.get("err"):
+            raise ServiceUnavailableError(
+                f"Error en validacion de {entity_label}: {result['err']}"
+            )
+        response_data = result.get("response") or {}
+        if not response_data.get("exists"):
+            raise ValidationError(
+                f"{entity_label.capitalize()} no encontrado o invalido: {entity_id}"
+            )
+
     def assert_vehicle_exists(self, vehicle_id: int) -> None:
         if not self._rabbitmq_url:
             logger.info("RabbitMQ desactivado — saltando validacion de vehiculo")
@@ -49,8 +60,7 @@ class RabbitMQExistenceValidator(EntityExistencePort):
             pattern=_PATTERN_VEHICLE_EXISTS,
             payload={"id": str(vehicle_id)},
         )
-        if not result.get("exists"):
-            raise ValidationError(f"Vehiculo no encontrado o invalido: {vehicle_id}")
+        self._parse_rpc_response(result, "vehiculo", vehicle_id)
 
     def assert_client_exists(self, client_id: int) -> None:
         if not self._rabbitmq_url:
@@ -61,8 +71,7 @@ class RabbitMQExistenceValidator(EntityExistencePort):
             pattern=_PATTERN_CLIENT_EXISTS,
             payload={"id": str(client_id)},
         )
-        if not result.get("exists"):
-            raise ValidationError(f"Cliente no encontrado o invalido: {client_id}")
+        self._parse_rpc_response(result, "cliente", client_id)
 
     def _rpc_call(self, queue: str, pattern: str, payload: dict) -> dict:
         import pika
@@ -89,7 +98,7 @@ class RabbitMQExistenceValidator(EntityExistencePort):
                 auto_ack=True,
             )
 
-            message = json.dumps({"pattern": pattern, "data": payload})
+            message = json.dumps({"pattern": pattern, "data": payload, "id": corr_id})
             channel.basic_publish(
                 exchange="",
                 routing_key=queue,
