@@ -34,3 +34,9 @@ class ValidationError(DomainError):
     """Error de validación de reglas de negocio."""
 
     code = 'validation_error'
+
+
+class ServiceUnavailableError(DomainError):
+    """Servicio externo no disponible (RabbitMQ, etc.)."""
+
+    code = 'service_unavailable'
