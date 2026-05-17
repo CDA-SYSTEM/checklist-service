@@ -21,6 +21,7 @@ _DOMAIN_STATUS_MAP = {
     'not_found': 404,
     'conflict': 409,
     'validation_error': 400,
+    'service_unavailable': 503,
     'domain_error': 400,
 }
 

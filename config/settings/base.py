@@ -21,6 +21,10 @@ env = environ.Env(
     DEBUG=(bool, False),
     CORS_ALLOW_ALL_ORIGINS=(bool, False),
     AUTO_SEED_TEMPLATES=(bool, True),
+    RABBITMQ_URI=(str, ""),
+    RABBITMQ_CLIENT_QUEUE=(str, "client-service-queue"),
+    RABBITMQ_VEHICLE_QUEUE=(str, "vehicle-service-queue"),
+    RABBITMQ_RPC_TIMEOUT_MS=(int, 8000),
 )
 environ.Env.read_env(BASE_DIR / ".env")
 
@@ -162,3 +166,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# ---------------------------------------------------------------------------
+# RabbitMQ — validación de existencia vía microservicios
+# ---------------------------------------------------------------------------
+RABBITMQ_URI = env("RABBITMQ_URI")
+RABBITMQ_CLIENT_QUEUE = env("RABBITMQ_CLIENT_QUEUE")
+RABBITMQ_VEHICLE_QUEUE = env("RABBITMQ_VEHICLE_QUEUE")
+RABBITMQ_RPC_TIMEOUT_MS = env.int("RABBITMQ_RPC_TIMEOUT_MS")

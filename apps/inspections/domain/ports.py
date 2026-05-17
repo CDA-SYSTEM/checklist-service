@@ -1,7 +1,8 @@
 """
 Ports (interfaces) del bounded context Inspections.
 
-Define el contrato que cualquier adaptador de persistencia debe cumplir.
+Define el contrato que cualquier adaptador de persistencia o validación
+externa debe cumplir.
 """
 
 from abc import ABC, abstractmethod
@@ -65,3 +66,15 @@ class InspectionRepositoryPort(ABC):
         """
         Retorna tupla (items, total_count) con paginación y filtros opcionales.
         """
+
+
+class EntityExistencePort(ABC):
+    """Port de salida — validación de existencia contra servicios externos."""
+
+    @abstractmethod
+    def assert_vehicle_exists(self, vehicle_id: int) -> None:
+        ...
+
+    @abstractmethod
+    def assert_client_exists(self, client_id: int) -> None:
+        ...
