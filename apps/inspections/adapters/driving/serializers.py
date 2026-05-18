@@ -89,6 +89,24 @@ class InspectionOutputSerializer(serializers.Serializer):
         return getattr(obj, "labrado", None)
 
 
+class InspectionListOutputSerializer(serializers.Serializer):
+    id = serializers.CharField()
+    plate = serializers.CharField()
+    vehicle_id = serializers.IntegerField()
+    client_id = serializers.IntegerField(allow_null=True, required=False)
+    vehicle_type = serializers.ChoiceField(choices=VehicleType.ALL)
+    inspection_datetime = serializers.DateTimeField()
+    inspector_id = serializers.CharField()
+    status = serializers.ChoiceField(choices=InspectionStatus.ALL)
+    observations = serializers.CharField(allow_blank=True)
+    general_result = serializers.CharField(
+        allow_blank=True, allow_null=True, required=False
+    )
+    template_ref = TemplateReferenceSerializer()
+    created_at = serializers.DateTimeField()
+    updated_at = serializers.DateTimeField()
+
+
 class DateRangeQuerySerializer(serializers.Serializer):
     start = serializers.DateTimeField()
     end = serializers.DateTimeField()
@@ -121,5 +139,5 @@ class PaginationInfoSerializer(serializers.Serializer):
 
 
 class InspectionPaginatedOutputSerializer(serializers.Serializer):
-    items = InspectionOutputSerializer(many=True)
+    items = InspectionListOutputSerializer(many=True)
     pagination = PaginationInfoSerializer()
