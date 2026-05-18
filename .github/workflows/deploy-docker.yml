@@ -76,6 +76,14 @@ jobs:
               -e CORS_ALLOWED_ORIGINS="${{ secrets.CORS_ALLOWED_ORIGINS }}" \
               -e AUTO_SEED_TEMPLATES="${{ secrets.AUTO_SEED_TEMPLATES }}" \
               -e API_SECRET_KEY="${{ secrets.API_SECRET_KEY }}" \
+              -e RABBITMQ_URI="${{ secrets.RABBITMQ_URI }}"
+              -e RABBITMQ_QUEUE_USER="${{ secrets.RABBITMQ_QUEUE_USER }}"
+              -e RABBITMQ_PASSWORD="${{ secrets.RABBITMQ_PASSWORD }}"
+              -e RABBITMQ_HOST="${{ secrets.RABBITMQ_HOST }}"
+              -e RABBITMQ_PORT="${{ secrets.RABBITMQ_PORT }}"
+              -e RABBITMQ_CLIENT_QUEUE="${{ secrets.RABBITMQ_CLIENT_QUEUE }}"
+              -e RABBITMQ_VEHICLE_QUEUE="${{ secrets.RABBITMQ_VEHICLE_QUEUE }}"
+              -e RABBITMQ_RPC_TIMEOUT_MS="${{ secrets.RABBITMQ_RPC_TIMEOUT_MS }}"
               -e DJANGO_SETTINGS_MODULE="config.settings.prod" \
               --restart unless-stopped \
               ghcr.io/${{ env.REPO_LC }}:latest
