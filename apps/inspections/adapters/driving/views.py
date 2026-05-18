@@ -12,6 +12,7 @@ from apps.inspections.adapters.driving.serializers import (
     InspectionCloseSerializer,
     InspectionCreateSerializer,
     InspectionFilterSerializer,
+    InspectionListOutputSerializer,
     InspectionOutputSerializer,
     InspectionPaginatedOutputSerializer,
     InspectionStatusTransitionSerializer,
@@ -24,7 +25,7 @@ class InspectionCollectionView(APIView):
     def get(self, request):
         use_cases = get_inspection_use_cases()
         entities = use_cases.list_inspections()
-        serializer = InspectionOutputSerializer(entities, many=True)
+        serializer = InspectionListOutputSerializer(entities, many=True)
         return success_response(serializer.data)
 
     def post(self, request):
@@ -160,7 +161,7 @@ class InspectionSearchView(APIView):
 
         total_pages = (total_count + page_size - 1) // page_size
 
-        output_serializer = InspectionOutputSerializer(items, many=True)
+        output_serializer = InspectionListOutputSerializer(items, many=True)
         pagination_info = {
             'page': page,
             'page_size': page_size,
