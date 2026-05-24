@@ -55,6 +55,8 @@ static/
 *.swp
 *.swo
 .DS_Store
+.codegraph/
+.cursor/
 
 # =========================================
 # Type checkers / linters / caches
