@@ -9,6 +9,9 @@ from django.conf import settings
 from apps.inspections.adapters.driven.existence_validator import (
     RabbitMQExistenceValidator,
 )
+from apps.inspections.adapters.driven.event_publisher import (
+    RabbitMQInspectionEventPublisher,
+)
 from apps.inspections.adapters.driven.repository import MongoInspectionRepository
 from apps.inspections.application.use_cases import InspectionUseCases
 from apps.templates.adapters.driven.repository import MongoTemplateRepository
@@ -26,8 +29,15 @@ def get_inspection_use_cases() -> InspectionUseCases:
     else:
         existence_validator = None
 
+    event_publisher = RabbitMQInspectionEventPublisher(
+        rabbitmq_url=rabbitmq_url,
+        exchange=getattr(settings, "RABBITMQ_TRACKER_EXCHANGE", None),
+        queue=getattr(settings, "RABBITMQ_TRACKER_QUEUE", None),
+    )
+
     return InspectionUseCases(
         inspection_repository=MongoInspectionRepository(),
         template_repository=MongoTemplateRepository(),
         existence_validator=existence_validator,
+        event_publisher=event_publisher,
     )

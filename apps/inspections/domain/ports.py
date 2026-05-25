@@ -78,3 +78,11 @@ class EntityExistencePort(ABC):
     @abstractmethod
     def assert_client_exists(self, client_id: int) -> None:
         ...
+
+
+class InspectionEventPublisherPort(ABC):
+    """Output port for publishing inspection events."""
+
+    @abstractmethod
+    def publish_inspection_completed(self, inspection: InspectionEntity) -> None:
+        ...

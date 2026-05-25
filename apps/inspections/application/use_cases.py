@@ -15,7 +15,11 @@ from apps.inspections.domain.entities import (
     InspectionItemResponseEntity,
     TemplateReferenceVO,
 )
-from apps.inspections.domain.ports import EntityExistencePort, InspectionRepositoryPort
+from apps.inspections.domain.ports import (
+    EntityExistencePort,
+    InspectionEventPublisherPort,
+    InspectionRepositoryPort,
+)
 from apps.templates.domain.ports import TemplateRepositoryPort
 
 
@@ -27,10 +31,12 @@ class InspectionUseCases:
         inspection_repository: InspectionRepositoryPort,
         template_repository: TemplateRepositoryPort,
         existence_validator: EntityExistencePort | None = None,
+        event_publisher: InspectionEventPublisherPort | None = None,
     ):
         self.inspection_repository = inspection_repository
         self.template_repository = template_repository
         self.existence_validator = existence_validator
+        self.event_publisher = event_publisher
 
     # ------------------------------------------------------------------
     # Resolución de templates (via port inyectado)
@@ -243,7 +249,10 @@ class InspectionUseCases:
         test_entity.validate_ready_for_close()
 
         payload['status'] = InspectionStatus.CERRADA
-        return self.update_inspection(inspection_id, payload)
+        closed_inspection = self.update_inspection(inspection_id, payload)
+        if self.event_publisher:
+            self.event_publisher.publish_inspection_completed(closed_inspection)
+        return closed_inspection
 
     def delete_inspection(self, inspection_id: str) -> dict:
         self.inspection_repository.delete(inspection_id)
