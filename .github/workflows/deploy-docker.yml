@@ -84,6 +84,8 @@ jobs:
               -e RABBITMQ_CLIENT_QUEUE="${{ secrets.RABBITMQ_CLIENT_QUEUE }}" \
               -e RABBITMQ_VEHICLE_QUEUE="${{ secrets.RABBITMQ_VEHICLE_QUEUE }}" \
               -e RABBITMQ_RPC_TIMEOUT_MS="${{ secrets.RABBITMQ_RPC_TIMEOUT_MS }}" \
+              -e RABBITMQ_TRACKER_EXCHANGE="${{ secrets.RABBITMQ_TRACKER_EXCHANGE }}" \
+              -e RABBITMQ_TRACKER_QUEUE="${{ secrets.RABBITMQ_TRACKER_QUEUE }}" \
               -e DJANGO_SETTINGS_MODULE="config.settings.prod" \
               --restart unless-stopped \
               ghcr.io/${{ env.REPO_LC }}:latest
