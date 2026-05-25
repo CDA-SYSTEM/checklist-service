@@ -26,7 +26,7 @@ env = environ.Env(
     RABBITMQ_VEHICLE_QUEUE=(str, "vehicle-service-queue"),
     RABBITMQ_RPC_TIMEOUT_MS=(int, 8000),
     RABBITMQ_TRACKER_EXCHANGE=(str, ""),
-    RABBITMQ_TRACKER_QUEUE=(str, "checklist-service-queue"),
+    RABBITMQ_TRACKER_QUEUE=(str, "tracker_service.queue"),
 )
 environ.Env.read_env(BASE_DIR / ".env")
 

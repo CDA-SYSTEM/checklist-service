@@ -81,7 +81,7 @@ class EntityExistencePort(ABC):
 
 
 class InspectionEventPublisherPort(ABC):
-    """Output port for publishing inspection events."""
+    """Puerto de salida para la publicación de eventos de inspección."""
 
     @abstractmethod
     def publish_inspection_completed(self, inspection: InspectionEntity) -> None:

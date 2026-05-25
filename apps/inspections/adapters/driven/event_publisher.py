@@ -1,5 +1,5 @@
 """
-Driven Adapter - RabbitMQ publisher for inspection events.
+Adaptador de salida: publicador de RabbitMQ para eventos de inspección.
 """
 
 from __future__ import annotations
@@ -23,7 +23,7 @@ ROUTING_KEY_INSPECCION_COMPLETADA = "inspeccion.planilla.completada"
 
 
 class RabbitMQInspectionEventPublisher(InspectionEventPublisherPort):
-    """Publishes inspection domain events to RabbitMQ."""
+    """Publica eventos del dominio de inspección en RabbitMQ."""
 
     def __init__(
         self,
@@ -38,7 +38,7 @@ class RabbitMQInspectionEventPublisher(InspectionEventPublisherPort):
     def publish_inspection_completed(self, inspection: InspectionEntity) -> None:
         if not self._rabbitmq_url or not self._exchange:
             logger.info(
-                "RabbitMQ publisher disabled - skipping inspection completed event"
+                "Publicador de RabbitMQ deshabilitado: se omite el evento de inspección completada."
             )
             return
 
@@ -83,19 +83,19 @@ class RabbitMQInspectionEventPublisher(InspectionEventPublisherPort):
             )
         except Exception as exc:
             logger.exception(
-                "Error publishing event %s: %s",
+                "Error al publicar evento %s: %s",
                 ROUTING_KEY_INSPECCION_COMPLETADA,
                 exc,
             )
             raise ServiceUnavailableError(
-                "Could not publish the inspection completed event to RabbitMQ."
+                "No se pudo publicar el evento de inspección completada en RabbitMQ."
             )
         finally:
             if connection and not connection.is_closed:
                 try:
                     connection.close()
                 except Exception:
-                    logger.warning("Could not close RabbitMQ connection cleanly")
+                    logger.warning("No se pudo cerrar correctamente la conexión con RabbitMQ.")
 
     def _to_json_payload(self, inspection: InspectionEntity) -> dict[str, Any]:
         return self._to_json_compatible(inspection)
