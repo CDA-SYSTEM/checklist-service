@@ -254,6 +254,63 @@ class InspectionUseCases:
             self.event_publisher.publish_inspection_completed(closed_inspection)
         return closed_inspection
 
+    def get_stats(self) -> dict:
+        inspections = self.inspection_repository.list_all()
+        total = len(inspections)
+
+        by_status = {}
+        by_result = {}
+        by_vehicle_type = {}
+        today_count = 0
+        month_count = 0
+        from datetime import datetime, timezone
+
+        now = datetime.now(timezone.utc)
+        today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+
+        for insp in inspections:
+            status = getattr(insp, 'status', 'UNKNOWN')
+            by_status[status] = by_status.get(status, 0) + 1
+
+            result = getattr(insp, 'general_result', None) or 'PENDIENTE'
+            by_result[result] = by_result.get(result, 0) + 1
+
+            vtype = getattr(insp, 'vehicle_type', 'UNKNOWN')
+            by_vehicle_type[vtype] = by_vehicle_type.get(vtype, 0) + 1
+
+            insp_date = getattr(insp, 'inspection_datetime', None)
+            if insp_date:
+                if isinstance(insp_date, datetime) and insp_date >= today_start:
+                    today_count += 1
+                if isinstance(insp_date, datetime) and insp_date >= month_start:
+                    month_count += 1
+
+        templates_count = 0
+        try:
+            from apps.templates.adapters.driven.documents import ChecklistTemplate
+            templates_count = ChecklistTemplate.objects.count()
+        except Exception:
+            pass
+
+        labrados_count = 0
+        try:
+            from apps.inspections.adapters.driven.documents import Inspection
+            labrados_count = Inspection.objects(labrado__ne=None).count()
+        except Exception:
+            pass
+
+        return {
+            'total_inspections': total,
+            'today_inspections': today_count,
+            'month_inspections': month_count,
+            'by_status': by_status,
+            'by_result': by_result,
+            'by_vehicle_type': by_vehicle_type,
+            'total_templates': templates_count,
+            'total_with_labrado': labrados_count,
+        }
+
     def delete_inspection(self, inspection_id: str) -> dict:
         self.inspection_repository.delete(inspection_id)
         return {'id': inspection_id}

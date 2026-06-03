@@ -4,9 +4,11 @@ Driving Adapters — Views DRF para el bounded context Inspections.
 Responsabilidad: traducir HTTP → Use Case → HTTP.
 """
 
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
 from apps.common.presentation.api_response import success_response
+from apps.common.presentation.authentication import StaticAPIKeyAuthentication
 from apps.inspections.adapters.driving.serializers import (
     DateRangeQuerySerializer,
     InspectionCloseSerializer,
@@ -176,3 +178,13 @@ class InspectionSearchView(APIView):
             'pagination': pagination_info,
         }
         return success_response(response_data)
+
+
+class InspectionStatsView(APIView):
+    authentication_classes = [StaticAPIKeyAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        use_cases = get_inspection_use_cases()
+        stats = use_cases.get_stats()
+        return success_response(stats, "Estadisticas de inspecciones")
